@@ -278,9 +278,9 @@ export default function ShopPage() {
                   >
                     Add to Cart
                   </button>
-                  <button className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all">
+                  <Link href="/product/watch" className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all text-center">
                     View Details
-                  </button>
+                  </Link>
                 </div>
                 <h3 className="text-white font-light text-xl mb-1">Avance Watch</h3>
                 <p className="text-white/60 font-light text-sm">$299.00</p>
@@ -326,9 +326,9 @@ export default function ShopPage() {
                   >
                     Add to Cart
                   </button>
-                  <button className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all">
+                  <Link href="/product/band" className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all text-center">
                     View Details
-                  </button>
+                  </Link>
                 </div>
                 <h3 className="text-white font-light text-xl mb-1">Avance Band</h3>
                 <p className="text-white/60 font-light text-sm">$79.00</p>
@@ -374,9 +374,9 @@ export default function ShopPage() {
                   >
                     Add to Cart
                   </button>
-                  <button className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all">
+                  <Link href="/product/ring" className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all text-center">
                     View Details
-                  </button>
+                  </Link>
                 </div>
                 <h3 className="text-white font-light text-xl mb-1">Avance Rings</h3>
                 <p className="text-white/60 font-light text-sm">$150.00</p>
@@ -422,9 +422,9 @@ export default function ShopPage() {
                   >
                     Add to Cart
                   </button>
-                  <button className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all">
+                  <Link href="/product/wat" className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all text-center">
                     View Details
-                  </button>
+                  </Link>
                 </div>
                 <h3 className="text-white font-light text-xl mb-1">Avance Wat</h3>
                 <p className="text-white/60 font-light text-sm">$199.00</p>
