@@ -206,31 +206,34 @@ export default function ProductPage() {
       {/* Header */}
       <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-8">
         <nav className="bg-black/10 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-12">
-              <Link href="/" className="flex items-center">
+          <div className="flex items-center justify-between relative">
+            {/* Logo */}
+            <div className="flex items-center">
+              <Link href="/">
                 <Image
-                  src="/images/Avance-text-logo.svg"
+                  src="/images/12345.png"
                   alt="Avance"
                   width={120}
-                  height={30}
-                  className="h-6 w-auto"
+                  height={24}
+                  className="object-contain"
                 />
               </Link>
-              <div className="hidden md:flex items-center space-x-8">
-                <Link href="/ai-coach" className="text-white/70 hover:text-white text-sm font-light tracking-wider transition-colors uppercase">
-                  AI Coach
-                </Link>
-                <Link href="/shop" className="text-white/70 hover:text-white text-sm font-light tracking-wider transition-colors uppercase">
-                  Shop
-                </Link>
-                <Link href="/#wellness" className="text-white/70 hover:text-white text-sm font-light tracking-wider transition-colors uppercase">
-                  Wellness
-                </Link>
-                <Link href="/#community" className="text-white/70 hover:text-white text-sm font-light tracking-wider transition-colors uppercase">
-                  Community
-                </Link>
-              </div>
+            </div>
+
+            {/* Navigation - Centered */}
+            <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+              <Link href="/#coach" className="text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase">
+                AI Coach
+              </Link>
+              <Link href="/shop" className="text-white hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase">
+                Shop
+              </Link>
+              <Link href="/#wellness" className="text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase">
+                Wellness
+              </Link>
+              <Link href="/#community" className="text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase">
+                Community
+              </Link>
             </div>
 
             {/* Cart Button */}
