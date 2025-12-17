@@ -4,13 +4,14 @@ import Image from "next/image"
 import { ResponsiveContainer, LineChart, Line, AreaChart, Area, BarChart, Bar } from "recharts"
 import { useState, useEffect } from "react"
 import React from "react"
-import { Moon, ArrowRight, MessageCircle, Heart, BarChart3, Trophy, Zap, Wind, Brain } from "lucide-react"
+import { Moon, ArrowRight, MessageCircle, Heart, BarChart3, Trophy, Zap, Wind, Brain, Menu, X } from "lucide-react"
 
 export default function AvanceLanding() {
   // REMOVED: const [isDarkMode, setIsDarkMode] = useState(false)
   const [activeFeature, setActiveFeature] = useState(0)
   const [currentChat, setCurrentChat] = useState(0)
   const [activeMood, setActiveMood] = useState(0)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const featureTimer = setInterval(() => {
@@ -137,20 +138,28 @@ export default function AvanceLanding() {
   return (
     <div className="relative dark" style={{ backgroundColor: "#1C1C1C" }}>
       {/* Header */}
-      <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-8">
-        <nav className="bg-black/10 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4">
+      <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4 md:px-8">
+        <nav className={`bg-black/10 backdrop-blur-xl border border-white/20 px-4 md:px-8 py-4 ${isMobileMenuOpen ? 'rounded-2xl' : 'rounded-full'}`}>
           <div className="flex items-center justify-between">
+            {/* Logo */}
             <div className="flex items-center">
               <Image
-                  src="/images/12345.png"
-                  alt="Avance"
-                  width={120}
-                  height={24}
-                  className="object-contain"
-                />
+                src="/images/logo-avance1.png"
+                alt="Avance"
+                width={50}
+                height={50}
+                className="object-contain md:hidden"
+              />
+              <Image
+                src="/images/12345.png"
+                alt="Avance"
+                width={120}
+                height={24}
+                className="object-contain hidden md:block"
+              />
             </div>
 
-            {/* Navigation - Centered */}
+            {/* Navigation - Desktop */}
             <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
               <button
                 onClick={() => scrollToSection("coach")}
@@ -178,15 +187,72 @@ export default function AvanceLanding() {
               </button>
             </div>
 
-            {/* Download Button */}
+            {/* Desktop Download Button */}
             <button
               onClick={() => scrollToSection("download")}
-              className="group flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 text-white/90 hover:text-white hover:bg-white/20 transition-all duration-300"
+              className="hidden md:flex group items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 text-white/90 hover:text-white hover:bg-white/20 transition-all duration-300"
             >
               <span className="text-sm font-light tracking-wider uppercase">Download</span>
               <ArrowRight className="w-4 h-4 group-hover:-rotate-45 transition-transform duration-300" />
             </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden w-10 h-10 flex items-center justify-center text-white/90 hover:text-white transition-all"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-4 pt-4 border-t border-white/10 space-y-4">
+              <button
+                onClick={() => {
+                  scrollToSection("coach")
+                  setIsMobileMenuOpen(false)
+                }}
+                className="block w-full text-left text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
+              >
+                AI Coach
+              </button>
+              <a
+                href="/shop"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full text-left text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
+              >
+                Shop
+              </a>
+              <button
+                onClick={() => {
+                  scrollToSection("wellness")
+                  setIsMobileMenuOpen(false)
+                }}
+                className="block w-full text-left text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
+              >
+                Wellness
+              </button>
+              <button
+                onClick={() => {
+                  scrollToSection("community")
+                  setIsMobileMenuOpen(false)
+                }}
+                className="block w-full text-left text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
+              >
+                Community
+              </button>
+              <button
+                onClick={() => {
+                  scrollToSection("download")
+                  setIsMobileMenuOpen(false)
+                }}
+                className="block w-full text-left text-white/90 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
+              >
+                Download
+              </button>
+            </div>
+          )}
         </nav>
       </header>
 
@@ -217,7 +283,7 @@ export default function AvanceLanding() {
       </section>
 
       {/* AI Coach Section */}
-      <section id="coach" className="relative min-h-screen py-32" style={{ backgroundColor: "#1C1C1C" }}>
+      <section id="coach" className="relative min-h-screen py-32" style={{ backgroundColor: "#000000" }}>
         <div className="container mx-auto px-8">
           <div className="max-w-7xl mx-auto">
             {/* Section Header */}

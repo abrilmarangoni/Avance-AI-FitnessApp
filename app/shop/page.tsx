@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ChevronLeft, ChevronRight, ShoppingCart, X, Minus, Plus, Trash2 } from "lucide-react"
+import { ArrowRight, ChevronLeft, ChevronRight, ShoppingCart, X, Minus, Plus, Trash2, Menu } from "lucide-react"
 import { useEffect, useLayoutEffect, useState } from "react"
 
 interface CartItem {
@@ -27,6 +27,7 @@ export default function ShopPage() {
   const [cart, setCart] = useState<CartItem[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -167,66 +168,119 @@ export default function ShopPage() {
   return (
     <div className="relative dark min-h-screen" style={{ backgroundColor: "#000000" }}>
       {/* Header */}
-      <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-8">
-        <nav className="bg-black/10 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4">
+      <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4 md:px-8">
+        <nav className={`bg-black/10 backdrop-blur-xl border border-white/20 px-4 md:px-8 py-4 ${isMobileMenuOpen ? 'rounded-2xl' : 'rounded-full'}`}>
           <div className="flex items-center justify-between">
+            {/* Logo */}
             <div className="flex items-center">
-              <a href="/">
+              <Link href="/">
+                <Image
+                  src="/images/logo-avance1.png"
+                  alt="Avance"
+                  width={50}
+                  height={50}
+                  className="object-contain md:hidden"
+                />
                 <Image
                   src="/images/12345.png"
                   alt="Avance"
                   width={120}
                   height={24}
-                  className="object-contain"
+                  className="object-contain hidden md:block"
                 />
-              </a>
+              </Link>
             </div>
 
-            {/* Navigation - Centered */}
+            {/* Navigation - Desktop */}
             <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
-              <a
+              <Link
                 href="/#coach"
                 className="text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase"
               >
                 AI Coach
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/shop"
                 className="text-white hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase"
               >
                 Shop
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/#wellness"
                 className="text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase"
               >
                 Wellness
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/#community"
                 className="text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase"
               >
                 Community
-              </a>
+              </Link>
             </div>
 
-            {/* Cart Button */}
-            <button
-              onClick={() => setIsCartOpen(true)}
-              className="group flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 text-white/90 hover:text-white hover:bg-white/20 transition-all duration-300 relative"
-            >
-              <ShoppingCart className="w-4 h-4" />
-              <span className="text-sm font-light tracking-wider uppercase">Cart</span>
-              {cartItemsCount > 0 && (
-                <span 
-                  className="absolute -top-2 -right-2 bg-white text-black font-bold rounded-full flex items-center justify-center"
-                  style={{ fontSize: '10px', minWidth: '22px', height: '22px', padding: '0 6px' }}
-                >
-                  {cartItemsCount}
-                </span>
-              )}
-            </button>
+            {/* Right side - Cart and Menu */}
+            <div className="flex items-center gap-3">
+              {/* Cart Button */}
+              <button
+                onClick={() => setIsCartOpen(true)}
+                className="group flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3 md:px-4 py-2 text-white/90 hover:text-white hover:bg-white/20 transition-all duration-300 relative"
+              >
+                <ShoppingCart className="w-4 h-4" />
+                <span className="hidden md:inline text-sm font-light tracking-wider uppercase">Cart</span>
+                {cartItemsCount > 0 && (
+                  <span 
+                    className="absolute -top-2 -right-2 bg-white text-black font-bold rounded-full flex items-center justify-center"
+                    style={{ fontSize: '10px', minWidth: '22px', height: '22px', padding: '0 6px' }}
+                  >
+                    {cartItemsCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden w-10 h-10 flex items-center justify-center text-white/90 hover:text-white transition-all"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-4 pt-4 border-t border-white/10 space-y-4">
+              <Link
+                href="/#coach"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full text-left text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
+              >
+                AI Coach
+              </Link>
+              <Link
+                href="/shop"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full text-left text-white hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
+              >
+                Shop
+              </Link>
+              <Link
+                href="/#wellness"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full text-left text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
+              >
+                Wellness
+              </Link>
+              <Link
+                href="/#community"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full text-left text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
+              >
+                Community
+              </Link>
+            </div>
+          )}
         </nav>
       </header>
 
