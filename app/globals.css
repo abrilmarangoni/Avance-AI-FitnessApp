@@ -90,3 +90,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Force black background on dark pages to prevent flash */
+html.dark-page,
+html.dark-page body,
+.dark-page {
+  background-color: #000000 !important;
+  color: #ffffff;
+}

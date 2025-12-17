@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ChevronLeft, ChevronRight, ShoppingCart, X, Minus, Plus, Trash2 } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { useParams } from "next/navigation"
 
 interface CartItem {
@@ -118,11 +118,24 @@ export default function ProductPage() {
     }
   }, [cart, isLoaded])
 
-  // Set black background
+  // Close cart on Escape key
   useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsCartOpen(false)
+      }
+    }
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [])
+
+  // Set black background immediately
+  useLayoutEffect(() => {
+    document.documentElement.classList.add('dark-page')
     document.documentElement.style.backgroundColor = "#000000"
     document.body.style.backgroundColor = "#000000"
     return () => {
+      document.documentElement.classList.remove('dark-page')
       document.documentElement.style.backgroundColor = ""
       document.body.style.backgroundColor = ""
     }

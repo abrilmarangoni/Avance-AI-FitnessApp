@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight, ShoppingCart, X, Minus, Plus, Trash2 } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 
 interface CartItem {
   id: string
@@ -43,6 +43,17 @@ export default function ShopPage() {
       localStorage.setItem('avance-cart', JSON.stringify(cart))
     }
   }, [cart, isLoaded])
+
+  // Close cart on Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsCartOpen(false)
+      }
+    }
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [])
 
   const addToCart = (id: string, name: string, price: number) => {
     setCart(prev => {
@@ -141,10 +152,13 @@ export default function ShopPage() {
     element?.scrollIntoView({ behavior: "smooth" })
   }
 
-  useEffect(() => {
+  // Set black background immediately
+  useLayoutEffect(() => {
+    document.documentElement.classList.add('dark-page')
     document.documentElement.style.backgroundColor = "#000000"
     document.body.style.backgroundColor = "#000000"
     return () => {
+      document.documentElement.classList.remove('dark-page')
       document.documentElement.style.backgroundColor = ""
       document.body.style.backgroundColor = ""
     }

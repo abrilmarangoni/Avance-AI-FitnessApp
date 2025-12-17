@@ -34,8 +34,23 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistMono.variable} font-mono antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var path = window.location.pathname;
+                if (path.startsWith('/shop') || path.startsWith('/product') || path.startsWith('/cart')) {
+                  document.documentElement.style.backgroundColor = '#000000';
+                  document.documentElement.classList.add('dark-page');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className={`${geistMono.variable} font-mono antialiased`} suppressHydrationWarning>
         {children}
         <Analytics />
       </body>
