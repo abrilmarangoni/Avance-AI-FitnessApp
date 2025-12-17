@@ -158,12 +158,12 @@ export default function AvanceLanding() {
               >
                 AI Coach
               </button>
-              <button
-                onClick={() => scrollToSection("shop")}
+              <a
+                href="/shop"
                 className="text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase"
               >
                 Shop
-              </button>
+              </a>
               <button
                 onClick={() => scrollToSection("wellness")}
                 className="text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase"
@@ -695,88 +695,6 @@ export default function AvanceLanding() {
         </div>
       </section>
 
-      {/* Shop Section */}
-      <section id="shop" className="relative min-h-screen py-32" style={{ backgroundColor: "#1C1C1C" }}>
-        <div className="container mx-auto px-8">
-          <div className="max-w-7xl mx-auto">
-            {/* Section Header */}
-            <div className="text-center mb-20">
-              <div className="inline-flex items-center space-x-3 mb-8">
-                <Zap className="w-5 h-5" style={{ color: "#006D77" }} />
-                <span className={`text-sm font-light tracking-[0.5em] uppercase text-gray-400`}>Shop</span>
-                <Zap className="w-5 h-5" style={{ color: "#006D77" }} />
-              </div>
-              <h2 className={`text-6xl md:text-7xl font-extralight mb-4 text-white`}>Shop</h2>
-              <h3 className="text-2xl md:text-3xl font-light mb-8" style={{ color: "#006D77" }}>
-                Fitness Gear & Accessories
-              </h3>
-              <p className={`text-lg font-light max-w-3xl mx-auto leading-relaxed text-gray-400`}>
-                Find the perfect gear to enhance your fitness journey. From workout clothes to supplements, we've got
-                everything you need.
-              </p>
-            </div>
-
-            {/* Shop Dashboard */}
-            <div className="grid lg:grid-cols-2 gap-16 mb-20">
-              {/* Featured Products */}
-              <div className={`rounded-2xl p-8 backdrop-blur-xl border bg-black/20 border-white/10`}>
-                <div className="space-y-6">
-                  <h3 className={`text-xl font-light text-white`}>Featured Products</h3>
-
-                  <div className="space-y-4">
-                    {[
-                      { name: "Resistance Bands", price: "$19.99", icon: Zap },
-                      { name: "Yoga Mat", price: "$29.99", icon: Heart },
-                      { name: "Breathing Mask", price: "$14.99", icon: Wind },
-                      { name: "Sports Bra", price: "$39.99", icon: Moon },
-                    ].map((product, index) => (
-                      <div key={index} className="flex items-center justify-between space-x-4">
-                        <div className="flex items-center space-x-3">
-                          <div
-                            className="w-8 h-8 rounded-full flex items-center justify-center"
-                            style={{ backgroundColor: "#006D77" }}
-                          >
-                            {React.createElement(product.icon, { className: "w-4 h-4 text-white" })}
-                          </div>
-                          <div>
-                            <h4 className={`font-medium text-white`}>{product.name}</h4>
-                            <p className={`text-sm text-gray-400`}>{product.price}</p>
-                          </div>
-                        </div>
-                        <button className="px-4 py-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-300">
-                          Add to Cart
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Shop Highlights */}
-              <div className={`rounded-2xl p-8 backdrop-blur-xl border bg-black/20 border-white/10`}>
-                <div className="space-y-8">
-                  <h3 className={`text-xl font-light text-white`}>Why Shop with Us?</h3>
-
-                  <div className="space-y-6">
-                    {[
-                      "High-quality products",
-                      "Discounts for members",
-                      "Free shipping on orders over $50",
-                      "Customer satisfaction guaranteed",
-                    ].map((highlight, index) => (
-                      <div key={index} className="flex items-center space-x-3">
-                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "#83C5BE" }}></div>
-                        <span className={`text-sm text-gray-300`}>{highlight}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section id="download" className="relative py-32" style={{ backgroundColor: "#1C1C1C" }}>
         <div className="container mx-auto px-8">
@@ -859,12 +777,12 @@ export default function AvanceLanding() {
                 >
                   AI Coach
                 </button>
-                <button
-                  onClick={() => scrollToSection("shop")}
+                <a
+                  href="/shop"
                   className={`text-sm font-light hover:opacity-70 transition-opacity text-gray-400`}
                 >
                   Shop
-                </button>
+                </a>
                 <button
                   onClick={() => scrollToSection("wellness")}
                   className={`text-sm font-light hover:opacity-70 transition-opacity text-gray-400`}
