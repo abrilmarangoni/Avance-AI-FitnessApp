@@ -194,10 +194,10 @@ export default function ShopPage() {
             {/* Navigation - Desktop */}
             <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
               <Link
-                href="/#coach"
+                href="/#about"
                 className="text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase"
               >
-                AI Coach
+                About
               </Link>
               <Link
                 href="/shop"
@@ -206,10 +206,10 @@ export default function ShopPage() {
                 Shop
               </Link>
               <Link
-                href="/#wellness"
+                href="/#features"
                 className="text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase"
               >
-                Wellness
+                Features
               </Link>
               <Link
                 href="/#community"
@@ -252,11 +252,11 @@ export default function ShopPage() {
           {isMobileMenuOpen && (
             <div className="md:hidden mt-4 pt-4 border-t border-white/10 space-y-4">
               <Link
-                href="/#coach"
+                href="/#about"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block w-full text-left text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
               >
-                AI Coach
+                About
               </Link>
               <Link
                 href="/shop"
@@ -266,11 +266,11 @@ export default function ShopPage() {
                 Shop
               </Link>
               <Link
-                href="/#wellness"
+                href="/#features"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block w-full text-left text-white/70 hover:text-white transition-all duration-300 font-light text-sm tracking-wider uppercase py-2"
               >
-                Wellness
+                Features
               </Link>
               <Link
                 href="/#community"
