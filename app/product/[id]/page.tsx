@@ -409,9 +409,8 @@ export default function ProductPage() {
         
         {/* Cart Panel */}
         <div 
-          className={`absolute right-0 top-0 h-full transform transition-transform duration-300 ease-out ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`absolute right-0 top-0 h-full w-full md:w-[50vw] transform transition-transform duration-300 ease-out ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}
           style={{
-            width: "50vw",
             background: "linear-gradient(180deg, #111111 0%, #0a0a0a 100%)",
             boxShadow: "-40px 0 100px rgba(255, 255, 255, 0.08), -10px 0 40px rgba(255, 255, 255, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.1)"
           }}
