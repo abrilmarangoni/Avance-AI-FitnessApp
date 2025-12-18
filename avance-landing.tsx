@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight, Menu, X, Plus } from "lucide-react"
+import Footer from "@/components/Footer"
 
 const aboutFeatures = [
   {
@@ -578,6 +579,9 @@ export default function AvanceLanding() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
 
     </div>
   )

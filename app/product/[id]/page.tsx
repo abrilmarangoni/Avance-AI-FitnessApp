@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowLeft, ChevronLeft, ChevronRight, ShoppingCart, X, Minus, Plus, Trash2, Menu } from "lucide-react"
 import { useEffect, useLayoutEffect, useState, useRef } from "react"
 import { useParams } from "next/navigation"
+import Footer from "@/components/Footer"
 
 interface CartItem {
   id: string
@@ -516,6 +517,9 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
 
       {/* Cart Slide Panel */}
       <div 
