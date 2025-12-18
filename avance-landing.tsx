@@ -1,11 +1,59 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
-import { ArrowRight, Menu, X } from "lucide-react"
+import { useState, useRef, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ArrowRight, Menu, X, Plus } from "lucide-react"
+
+const aboutFeatures = [
+  {
+    id: 1,
+    title: "Understand your body",
+    shortDescription: "Biometrics, recovery, sleep, readiness, VO₂, stress.",
+    image: "/images/try.png",
+    fullContent: {
+      paragraphs: [
+        "We collect and analyze your biometric data to understand how your body is actually responding over time.",
+        "Sleep quality, recovery, readiness, VO₂, stress, and daily signals are interpreted together — not in isolation — to reveal patterns, limits, and opportunities for improvement.",
+      ],
+    },
+  },
+  {
+    id: 2,
+    title: "Understand your mind",
+    shortDescription: "Daily check-ins, emotional journaling, mental load, focus patterns.",
+    image: "/images/try2.png",
+    fullContent: {
+      paragraphs: [
+        "Your mental state matters as much as your physical one.",
+        "Through daily check-ins, emotional journaling, and focus tracking, Avance helps you recognize mental load, emotional patterns, and how they influence your energy, motivation, and performance.",
+      ],
+    },
+  },
+  {
+    id: 3,
+    title: "Connect it all with Avance AI",
+    shortDescription: "Personal AI companions that help you reflect, plan, and adapt.",
+    image: "/images/try3.png",
+    fullContent: {
+      paragraphs: [
+        "Avance's AI companions bring everything together.",
+        "They connect your biometric signals with your mental state, help you reflect on what's happening, and guide you to plan, adapt, and make decisions that support both performance and long-term health.",
+      ],
+    },
+  },
+]
 
 export default function AvanceLanding() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [selectedFeature, setSelectedFeature] = useState<number | null>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.8
+    }
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -160,69 +208,118 @@ export default function AvanceLanding() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="relative min-h-screen py-32" style={{ backgroundColor: "#000000" }}>
+      <section id="about" className="relative py-32" style={{ backgroundColor: "#000000" }}>
         <div className="container mx-auto px-8">
           <div className="max-w-6xl mx-auto">
             
             {/* Section Label */}
-            <div className="mb-20">
+            <div className="mb-8">
               <span className="text-white/30 font-mono text-sm tracking-[0.3em] uppercase">
                 001 — About
               </span>
             </div>
 
-            {/* Main Content */}
-            <div className="grid lg:grid-cols-2 gap-20 items-start">
-              
-              {/* Left - Big Statement */}
-              <div>
-                <h2 className="text-5xl md:text-6xl lg:text-7xl font-extralight text-white leading-[1.1] tracking-tight">
-                  Your body.
-                  <br />
-                  <span className="text-white/40">Your mind.</span>
-                  <br />
-                  One system.
-                </h2>
-              </div>
-
-              {/* Right - Description */}
-              <div className="lg:pt-8">
-                <p className="text-xl md:text-2xl text-white/70 font-light leading-relaxed mb-12">
-                  Avance is an AI-powered wellness platform that adapts to you — your goals, your mood, your body. No generic plans. No one-size-fits-all.
-                </p>
-                
-                <p className="text-lg text-white/50 font-light leading-relaxed mb-16">
-                  We combine intelligent coaching with real-time emotional awareness to create a fitness experience that actually understands what you need, when you need it.
-                </p>
-
-                {/* Stats */}
-                <div className="flex gap-16">
-                  <div>
-                    <div className="text-4xl font-extralight text-white mb-2">24/7</div>
-                    <div className="text-sm text-white/40 font-mono uppercase tracking-wider">AI Support</div>
-                  </div>
-                  <div>
-                    <div className="text-4xl font-extralight text-white mb-2">100%</div>
-                    <div className="text-sm text-white/40 font-mono uppercase tracking-wider">Personalized</div>
-                  </div>
-                  <div>
-                    <div className="text-4xl font-extralight text-white mb-2">∞</div>
-                    <div className="text-sm text-white/40 font-mono uppercase tracking-wider">Adaptable</div>
-                  </div>
-                </div>
-              </div>
-
+            {/* Mission Statement */}
+            <div className="text-center max-w-4xl mx-auto mb-20">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white leading-[1.15] tracking-tight mb-10">
+                Be understood, not just measured.
+              </h2>
+              <p className="text-lg md:text-xl text-white/50 font-light leading-relaxed">
+                Because performance isn't only about what your body can do, but how you feel inside it. Avance connects biometrics, mental health, and AI companions to support your performance, well-being, and long-term health.
+              </p>
             </div>
 
-            {/* Bottom Line */}
-            <div className="mt-32 pt-12 border-t border-white/10">
-              <p className="text-white/30 font-mono text-sm tracking-wide">
-                Built for humans who want more than just a workout app.
-              </p>
+            {/* Feature Cards */}
+            <div className="grid md:grid-cols-3 gap-6">
+              {aboutFeatures.map((feature) => (
+                <div
+                  key={feature.id}
+                  className="relative bg-white/[0.02] hover:bg-white/[0.04] p-8 cursor-pointer group transition-all duration-300 h-full border border-white/[0.05] rounded-3xl"
+                  onClick={() => setSelectedFeature(feature.id)}
+                >
+                  <button className="absolute top-6 right-6 w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-colors z-10">
+                    <Plus className="w-4 h-4 text-white/40 group-hover:text-white/70" />
+                  </button>
+
+                  {feature.image && (
+                    <div className="flex justify-center mb-4">
+                      <Image
+                        src={feature.image}
+                        alt={feature.title}
+                        width={240}
+                        height={240}
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
+
+                  <div className={feature.image ? "" : "mt-8"}>
+                    <h3 className="text-2xl font-light leading-tight text-white mb-4">
+                      {feature.title}
+                    </h3>
+                    <p className="text-white/40 font-light leading-relaxed">
+                      {feature.shortDescription}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
 
           </div>
         </div>
+
+        {/* Expanded Modal */}
+        <AnimatePresence>
+          {selectedFeature && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
+                onClick={() => setSelectedFeature(null)}
+              />
+
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pt-28">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                  transition={{ duration: 0.2 }}
+                  className="bg-[#111] rounded-3xl p-8 max-w-lg w-full border border-white/10 relative"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Close button */}
+                  <button
+                    onClick={() => setSelectedFeature(null)}
+                    className="absolute top-4 right-4 w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:border-white/40 transition-colors"
+                  >
+                    <X className="w-4 h-4 text-white/60" />
+                  </button>
+
+                  {aboutFeatures.find((f) => f.id === selectedFeature) && (
+                    <>
+                      <h2 className="text-2xl md:text-3xl font-light tracking-tight text-white mb-6 pr-8">
+                        {aboutFeatures.find((f) => f.id === selectedFeature)?.title}
+                      </h2>
+
+                      <div className="space-y-4">
+                        {aboutFeatures
+                          .find((f) => f.id === selectedFeature)
+                          ?.fullContent.paragraphs.map((paragraph, index) => (
+                            <p key={index} className="text-white/50 text-base leading-relaxed font-light">
+                              {paragraph}
+                            </p>
+                          ))}
+                      </div>
+                    </>
+                  )}
+                </motion.div>
+              </div>
+            </>
+          )}
+        </AnimatePresence>
       </section>
 
       {/* Shop Preview Section */}
@@ -254,6 +351,7 @@ export default function AvanceLanding() {
             {/* Video Showcase */}
             <div className="relative rounded-2xl overflow-hidden mb-16">
               <video
+                ref={videoRef}
                 autoPlay
                 loop
                 muted
@@ -282,6 +380,84 @@ export default function AvanceLanding() {
               </div>
             </div>
 
+
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="relative py-32" style={{ backgroundColor: "#000000" }}>
+        <div className="container mx-auto px-8">
+          <div className="max-w-6xl mx-auto">
+            
+            {/* Section Label */}
+            <div className="mb-8">
+              <span className="text-white/30 font-mono text-sm tracking-[0.3em] uppercase">
+                003 — Features
+              </span>
+            </div>
+
+            {/* Header */}
+            <div className="mb-16">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white leading-tight mb-6">
+                Built for real wellness.
+              </h2>
+            </div>
+
+            {/* Key Feature - Adaptive Experience */}
+            <div className="bg-white/[0.02] border border-white/[0.05] rounded-3xl p-10 mb-8">
+              <div className="text-white/30 font-mono text-xs uppercase tracking-wider mb-6">Key Feature</div>
+              <h3 className="text-3xl md:text-4xl font-light text-white mb-4">The entire app adapts to you.</h3>
+              <p className="text-white/50 font-light leading-relaxed mb-8 max-w-2xl">
+                Not just metrics — everything. The way you see data, how AI talks to you, workout complexity, insights depth. Choose your level anytime.
+              </p>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="bg-white/[0.03] rounded-2xl p-6">
+                  <div className="text-white font-light text-xl mb-3">Simple</div>
+                  <p className="text-white/40 text-sm font-light leading-relaxed">Clear language, icons, human insights. "You're tired today, take it easy."</p>
+                </div>
+                <div className="bg-white/[0.03] rounded-2xl p-6">
+                  <div className="text-white font-light text-xl mb-3">Balanced</div>
+                  <p className="text-white/40 text-sm font-light leading-relaxed">Structured summaries, trends, explained metrics. "Sleep down, recovery affected."</p>
+                </div>
+                <div className="bg-white/[0.03] rounded-2xl p-6">
+                  <div className="text-white font-light text-xl mb-3">Technical</div>
+                  <p className="text-white/40 text-sm font-light leading-relaxed">Raw data, baselines, minimal interpretation. "HRV -12% vs baseline."</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Features Grid - Simplified */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+              
+              <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6">
+                <h3 className="text-lg font-light text-white mb-2">Wearable Ecosystem</h3>
+                <p className="text-white/40 text-sm font-light">Watches, Bands, Rings. Your devices, your data. No dependencies.</p>
+              </div>
+
+              <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6">
+                <h3 className="text-lg font-light text-white mb-2">AI Personal Coach</h3>
+                <p className="text-white/40 text-sm font-light">Practical AI that adjusts training based on your body and mind.</p>
+              </div>
+
+              <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6">
+                <h3 className="text-lg font-light text-white mb-2">Mental & Emotional</h3>
+                <p className="text-white/40 text-sm font-light">Daily check-ins, mood tracking, body-mind pattern detection.</p>
+              </div>
+
+              <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6">
+                <h3 className="text-lg font-light text-white mb-2">Privacy First</h3>
+                <p className="text-white/40 text-sm font-light">Your data, your control. HIPAA-aware, privacy-first architecture.</p>
+              </div>
+
+            </div>
+
+            {/* One-liner */}
+            <div className="border-t border-white/10 pt-10">
+              <p className="text-white/40 font-light text-base leading-relaxed max-w-2xl">
+                Everything connected — at your level.
+              </p>
+            </div>
 
           </div>
         </div>
