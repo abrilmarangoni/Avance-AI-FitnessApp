@@ -436,7 +436,7 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4">
+                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                   <button 
                     onClick={(e) => addToCart("watch", "Avance APEX", 1199, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -484,7 +484,7 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4">
+                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                   <button 
                     onClick={(e) => addToCart("band", "Avance PULSE", 449, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -532,7 +532,7 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4">
+                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                   <button 
                     onClick={(e) => addToCart("ring", "Avance ORBIT", 399, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -580,7 +580,7 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4">
+                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                   <button 
                     onClick={(e) => addToCart("wat", "Avance WATT PRO", 699, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -628,7 +628,7 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4">
+                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                   <button 
                     onClick={(e) => addToCart("banda", "Avance CORE ARM", 349, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -676,7 +676,7 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4">
+                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                   <button 
                     onClick={(e) => addToCart("heart", "Avance HEART CORE", 299, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"

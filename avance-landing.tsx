@@ -572,33 +572,6 @@ export default function AvanceLanding() {
                 <div className="text-white/40 text-xs font-mono uppercase tracking-wider">Active Users</div>
               </div>
 
-              {/* Big quote */}
-              <div className="col-span-2 md:col-span-3 bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-2xl p-8 flex flex-col justify-between" style={{ minHeight: '160px' }}>
-                <p className="text-white/90 text-xl md:text-2xl font-light leading-relaxed">
-                  "At mile 80, data means nothing if you don't understand how you feel. Avance gets that."
-                </p>
-                <div className="flex items-center gap-3 mt-4">
-                  <div className="w-10 h-10 rounded-full overflow-hidden">
-                    <Image
-                      src="/images/perso1.jpeg"
-                      alt="Elena Voss"
-                      width={40}
-                      height={40}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div>
-                    <div className="text-white/60 text-sm">Elena Voss</div>
-                    <div className="text-white/30 text-xs font-mono">Ultramarathon World Champion</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Stats card 3 */}
-              <div className="col-span-1 bg-white/[0.03] rounded-2xl p-5 flex flex-col justify-center items-center text-center">
-                <div className="text-white text-4xl font-extralight mb-1">4.9</div>
-                <div className="text-white/40 text-xs font-mono uppercase tracking-wider">App Rating</div>
-              </div>
 
             </div>
 
