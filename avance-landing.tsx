@@ -463,6 +463,150 @@ export default function AvanceLanding() {
         </div>
       </section>
 
+      {/* Community Section */}
+      <section id="community" className="relative py-32" style={{ backgroundColor: "#0a0a0a" }}>
+        <div className="container mx-auto px-8">
+          <div className="max-w-6xl mx-auto">
+            
+            {/* Section Label */}
+            <div className="mb-8">
+              <span className="text-white/30 font-mono text-sm tracking-[0.3em] uppercase">
+                004 — Community
+              </span>
+            </div>
+
+            {/* Header */}
+            <div className="mb-12">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white leading-tight">
+                Trusted by the best.
+              </h2>
+            </div>
+
+            {/* Bento Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+              
+              {/* Large - Ultra Runner with image */}
+              <div className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '400px' }}>
+                <Image
+                  src="/images/perso1.jpeg"
+                  alt="Elena Voss"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="text-white text-2xl font-light mb-1">Elena Voss</div>
+                  <div className="text-white/60 text-sm font-mono">Ultramarathon World Champion</div>
+                </div>
+              </div>
+
+              {/* Quote card */}
+              <div className="col-span-2 bg-white/[0.03] rounded-2xl p-6 flex flex-col justify-between" style={{ minHeight: '190px' }}>
+                <p className="text-white/80 text-lg md:text-xl font-light leading-relaxed">
+                  "Avance understands that performance is mental, not just physical."
+                </p>
+                <div>
+                  <div className="text-white/50 text-sm">Michael Torres</div>
+                  <div className="text-white/30 text-xs font-mono">Elena Voss' Performance Coach</div>
+                </div>
+              </div>
+
+              {/* Cyclist */}
+              <div className="col-span-1 relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '190px' }}>
+                <Image
+                  src="/images/perso2.jpeg"
+                  alt="Luca Bernardi"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <div className="text-white text-sm font-light">Luca Bernardi</div>
+                  <div className="text-white/50 text-xs font-mono">Cycling World Champion</div>
+                </div>
+              </div>
+
+              {/* Golfer */}
+              <div className="col-span-1 relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '190px' }}>
+                <Image
+                  src="/images/perso3.jpeg"
+                  alt="Marcus Reid"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <div className="text-white text-sm font-light">Marcus Reid</div>
+                  <div className="text-white/50 text-xs font-mono">Pro Golfer • 3x Major</div>
+                </div>
+              </div>
+
+              {/* Athlete 4 */}
+              <div className="col-span-1 relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '190px' }}>
+                <Image
+                  src="/images/perso4.jpeg"
+                  alt="Kai Tanaka"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <div className="text-white text-sm font-light">Kai Tanaka</div>
+                  <div className="text-white/50 text-xs font-mono">Olympic Swimmer</div>
+                </div>
+              </div>
+
+              {/* Quote card 2 */}
+              <div className="col-span-2 bg-white/[0.03] rounded-2xl p-6 flex flex-col justify-between">
+                <p className="text-white/80 text-base font-light leading-relaxed">
+                  "The AI coach feels like it actually knows me. Not generic advice — real understanding."
+                </p>
+                <div>
+                  <div className="text-white/50 text-sm">David R.</div>
+                  <div className="text-white/30 text-xs font-mono">Personal Trainer</div>
+                </div>
+              </div>
+
+              {/* Stats card */}
+              <div className="col-span-1 bg-white/[0.03] rounded-2xl p-5 flex flex-col justify-center items-center text-center">
+                <div className="text-white text-4xl font-extralight mb-1">50K+</div>
+                <div className="text-white/40 text-xs font-mono uppercase tracking-wider">Active Users</div>
+              </div>
+
+              {/* Big quote */}
+              <div className="col-span-2 md:col-span-3 bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-2xl p-8 flex flex-col justify-between" style={{ minHeight: '160px' }}>
+                <p className="text-white/90 text-xl md:text-2xl font-light leading-relaxed">
+                  "At mile 80, data means nothing if you don't understand how you feel. Avance gets that."
+                </p>
+                <div className="flex items-center gap-3 mt-4">
+                  <div className="w-10 h-10 rounded-full overflow-hidden">
+                    <Image
+                      src="/images/perso1.jpeg"
+                      alt="Elena Voss"
+                      width={40}
+                      height={40}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <div>
+                    <div className="text-white/60 text-sm">Elena Voss</div>
+                    <div className="text-white/30 text-xs font-mono">Ultramarathon World Champion</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stats card 3 */}
+              <div className="col-span-1 bg-white/[0.03] rounded-2xl p-5 flex flex-col justify-center items-center text-center">
+                <div className="text-white text-4xl font-extralight mb-1">4.9</div>
+                <div className="text-white/40 text-xs font-mono uppercase tracking-wider">App Rating</div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
     </div>
   )
 }
