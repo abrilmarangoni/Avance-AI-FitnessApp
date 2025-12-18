@@ -98,3 +98,8 @@ html.dark-page body,
   background-color: #000000 !important;
   color: #ffffff;
 }
+
+/* Flying particle animation */
+.flying-particle {
+  transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}

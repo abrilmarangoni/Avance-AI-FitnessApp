@@ -238,7 +238,7 @@ export default function AvanceLanding() {
             </div>
 
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white leading-tight mb-6 md:mb-0">
                 The System
               </h2>
@@ -251,89 +251,37 @@ export default function AvanceLanding() {
               </a>
             </div>
 
-            {/* Products Preview Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
-              
-              {/* Product 1 - Watch */}
-              <a href="/shop" className="group">
-                <div className="aspect-square rounded-xl overflow-hidden mb-4" style={{ background: "linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%)" }}>
-                  <div className="w-full h-full flex items-center justify-center p-6 group-hover:scale-105 transition-transform duration-500">
-                    <Image
-                      src="/images/reloj1.png"
-                      alt="Avance Watch"
-                      width={200}
-                      height={200}
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-                <h3 className="text-white/80 font-light text-sm mb-1">Avance Watch</h3>
-                <p className="text-white/40 font-mono text-xs">$299.00</p>
-              </a>
-
-              {/* Product 2 - Band */}
-              <a href="/shop" className="group">
-                <div className="aspect-square rounded-xl overflow-hidden mb-4" style={{ background: "linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%)" }}>
-                  <div className="w-full h-full flex items-center justify-center p-6 group-hover:scale-105 transition-transform duration-500">
-                    <Image
-                      src="/images/band1.png"
-                      alt="Avance Band"
-                      width={200}
-                      height={200}
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-                <h3 className="text-white/80 font-light text-sm mb-1">Avance Band</h3>
-                <p className="text-white/40 font-mono text-xs">$79.00</p>
-              </a>
-
-              {/* Product 3 - Rings */}
-              <a href="/shop" className="group">
-                <div className="aspect-square rounded-xl overflow-hidden mb-4" style={{ background: "linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%)" }}>
-                  <div className="w-full h-full flex items-center justify-center p-6 group-hover:scale-105 transition-transform duration-500">
-                    <Image
-                      src="/images/RING1.png"
-                      alt="Avance Rings"
-                      width={200}
-                      height={200}
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-                <h3 className="text-white/80 font-light text-sm mb-1">Avance Rings</h3>
-                <p className="text-white/40 font-mono text-xs">$150.00</p>
-              </a>
-
-              {/* Product 4 - Wat */}
-              <a href="/shop" className="group">
-                <div className="aspect-square rounded-xl overflow-hidden mb-4" style={{ background: "linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%)" }}>
-                  <div className="w-full h-full flex items-center justify-center p-6 group-hover:scale-105 transition-transform duration-500">
-                    <Image
-                      src="/images/wat1.png"
-                      alt="Avance Wat"
-                      width={200}
-                      height={200}
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-                <h3 className="text-white/80 font-light text-sm mb-1">Avance Wat</h3>
-                <p className="text-white/40 font-mono text-xs">$199.00</p>
-              </a>
-
-            </div>
-
-            {/* CTA Button */}
-            <div className="text-center">
-              <a 
-                href="/shop"
-                className="inline-flex items-center gap-3 px-8 py-3 border border-white/30 rounded text-white font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
+            {/* Video Showcase */}
+            <div className="relative rounded-2xl overflow-hidden mb-16">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto object-cover"
+                style={{ maxHeight: '500px', objectFit: 'cover' }}
               >
-                Enter Shop
-                <ArrowRight className="w-4 h-4" />
-              </a>
+                <source src="/addavance1.mp4" type="video/mp4" />
+              </video>
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+              {/* CTA over video */}
+              <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between">
+                <div>
+                  <p className="text-white/60 font-mono text-xs uppercase tracking-wider mb-2">Discover the ecosystem</p>
+                  <h3 className="text-white text-2xl md:text-3xl font-extralight">Premium AI Wearables</h3>
+                </div>
+                <a 
+                  href="/shop"
+                  className="hidden md:inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-mono text-xs uppercase tracking-wider hover:bg-white/20 transition-all"
+                >
+                  Shop Now
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
+
 
           </div>
         </div>

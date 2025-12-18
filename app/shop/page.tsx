@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight, ShoppingCart, X, Minus, Plus, Trash2, Menu } from "lucide-react"
-import { useEffect, useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState, useRef } from "react"
 
 interface CartItem {
   id: string
@@ -21,6 +21,52 @@ const productImages: Record<string, string> = {
   heart: "/images/heart1.png"
 }
 
+interface FlyingParticle {
+  id: number
+  startX: number
+  startY: number
+  endX: number
+  endY: number
+}
+
+function FlyingParticleComponent({ particle }: { particle: FlyingParticle }) {
+  const [position, setPosition] = useState({ x: particle.startX, y: particle.startY, scale: 1, opacity: 1 })
+  
+  useEffect(() => {
+    // Start animation after a tiny delay to ensure transition works
+    const timeout = setTimeout(() => {
+      setPosition({
+        x: particle.endX,
+        y: particle.endY,
+        scale: 0.3,
+        opacity: 0
+      })
+    }, 10)
+    return () => clearTimeout(timeout)
+  }, [particle])
+  
+  return (
+    <div
+      className="fixed pointer-events-none z-[200]"
+      style={{
+        left: position.x,
+        top: position.y,
+        transform: `translate(-50%, -50%) scale(${position.scale})`,
+        opacity: position.opacity,
+        transition: 'all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1)'
+      }}
+    >
+      <div 
+        className="w-5 h-5 rounded-full"
+        style={{
+          background: 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.9) 20%, rgba(200,200,255,0.5) 50%, transparent 100%)',
+          boxShadow: '0 0 20px 10px rgba(255,255,255,0.8), 0 0 40px 20px rgba(200,200,255,0.4), 0 0 60px 30px rgba(150,150,255,0.2)'
+        }}
+      />
+    </div>
+  )
+}
+
 export default function ShopPage() {
   const [currentRing, setCurrentRing] = useState(0)
   const [currentWatch, setCurrentWatch] = useState(0)
@@ -32,6 +78,8 @@ export default function ShopPage() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [flyingParticles, setFlyingParticles] = useState<FlyingParticle[]>([])
+  const cartButtonRef = useRef<HTMLButtonElement>(null)
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -60,7 +108,29 @@ export default function ShopPage() {
     return () => document.removeEventListener('keydown', handleEscape)
   }, [])
 
-  const addToCart = (id: string, name: string, price: number) => {
+  const addToCart = (id: string, name: string, price: number, event?: React.MouseEvent) => {
+    // Create flying particle animation
+    if (event && cartButtonRef.current) {
+      const button = event.currentTarget as HTMLElement
+      const buttonRect = button.getBoundingClientRect()
+      const cartRect = cartButtonRef.current.getBoundingClientRect()
+      
+      const particle: FlyingParticle = {
+        id: Date.now(),
+        startX: buttonRect.left + buttonRect.width / 2,
+        startY: buttonRect.top + buttonRect.height / 2,
+        endX: cartRect.left + cartRect.width / 2,
+        endY: cartRect.top + cartRect.height / 2
+      }
+      
+      setFlyingParticles(prev => [...prev, particle])
+      
+      // Remove particle after animation
+      setTimeout(() => {
+        setFlyingParticles(prev => prev.filter(p => p.id !== particle.id))
+      }, 800)
+    }
+    
     setCart(prev => {
       const existingItem = prev.find(item => item.id === id)
       if (existingItem) {
@@ -195,6 +265,11 @@ export default function ShopPage() {
 
   return (
     <div className="relative dark min-h-screen" style={{ backgroundColor: "#000000" }}>
+      {/* Flying Particles */}
+      {flyingParticles.map(particle => (
+        <FlyingParticleComponent key={particle.id} particle={particle} />
+      ))}
+      
       {/* Header */}
       <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4 md:px-8">
         <nav className={`bg-black/10 backdrop-blur-xl border border-white/20 px-4 md:px-8 py-4 ${isMobileMenuOpen ? 'rounded-2xl' : 'rounded-full'}`}>
@@ -251,6 +326,7 @@ export default function ShopPage() {
             <div className="flex items-center gap-3">
               {/* Cart Button */}
               <button
+                ref={cartButtonRef}
                 onClick={() => setIsCartOpen(true)}
                 className="group flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3 md:px-4 py-2 text-white/90 hover:text-white hover:bg-white/20 transition-all duration-300 relative"
               >
@@ -362,7 +438,7 @@ export default function ShopPage() {
               <div className="p-6 border-t border-white/10">
                 <div className="flex gap-3 mb-4">
                   <button 
-                    onClick={() => addToCart("watch", "Avance Watch", 299)}
+                    onClick={(e) => addToCart("watch", "Avance APEX", 1199, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
                   >
                     Add to Cart
@@ -371,8 +447,8 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance Watch</h3>
-                <p className="text-white/60 font-light text-sm">$299.00</p>
+                <h3 className="text-white font-light text-xl mb-1">Avance APEX</h3>
+                <p className="text-white/60 font-light text-sm">$1,199.00</p>
               </div>
             </div>
 
@@ -410,7 +486,7 @@ export default function ShopPage() {
               <div className="p-6 border-t border-white/10">
                 <div className="flex gap-3 mb-4">
                   <button 
-                    onClick={() => addToCart("band", "Avance Band", 79)}
+                    onClick={(e) => addToCart("band", "Avance PULSE", 449, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
                   >
                     Add to Cart
@@ -419,8 +495,8 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance Band</h3>
-                <p className="text-white/60 font-light text-sm">$79.00</p>
+                <h3 className="text-white font-light text-xl mb-1">Avance PULSE</h3>
+                <p className="text-white/60 font-light text-sm">$449.00</p>
               </div>
             </div>
 
@@ -458,7 +534,7 @@ export default function ShopPage() {
               <div className="p-6 border-t border-white/10">
                 <div className="flex gap-3 mb-4">
                   <button 
-                    onClick={() => addToCart("ring", "Avance Rings", 150)}
+                    onClick={(e) => addToCart("ring", "Avance ORBIT", 399, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
                   >
                     Add to Cart
@@ -467,8 +543,8 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance Rings</h3>
-                <p className="text-white/60 font-light text-sm">$150.00</p>
+                <h3 className="text-white font-light text-xl mb-1">Avance ORBIT</h3>
+                <p className="text-white/60 font-light text-sm">$399.00</p>
               </div>
             </div>
 
@@ -506,7 +582,7 @@ export default function ShopPage() {
               <div className="p-6 border-t border-white/10">
                 <div className="flex gap-3 mb-4">
                   <button 
-                    onClick={() => addToCart("wat", "Avance Watt", 199)}
+                    onClick={(e) => addToCart("wat", "Avance WATT PRO", 699, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
                   >
                     Add to Cart
@@ -515,8 +591,8 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance Watt</h3>
-                <p className="text-white/60 font-light text-sm">$199.00</p>
+                <h3 className="text-white font-light text-xl mb-1">Avance WATT PRO</h3>
+                <p className="text-white/60 font-light text-sm">$699.00</p>
               </div>
             </div>
 
@@ -554,7 +630,7 @@ export default function ShopPage() {
               <div className="p-6 border-t border-white/10">
                 <div className="flex gap-3 mb-4">
                   <button 
-                    onClick={() => addToCart("banda", "Avance Banda", 89)}
+                    onClick={(e) => addToCart("banda", "Avance CORE ARM", 349, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
                   >
                     Add to Cart
@@ -563,8 +639,8 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance Banda</h3>
-                <p className="text-white/60 font-light text-sm">$89.00</p>
+                <h3 className="text-white font-light text-xl mb-1">Avance CORE ARM</h3>
+                <p className="text-white/60 font-light text-sm">$349.00</p>
               </div>
             </div>
 
@@ -602,7 +678,7 @@ export default function ShopPage() {
               <div className="p-6 border-t border-white/10">
                 <div className="flex gap-3 mb-4">
                   <button 
-                    onClick={() => addToCart("heart", "Avance Heart", 129)}
+                    onClick={(e) => addToCart("heart", "Avance HEART CORE", 299, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
                   >
                     Add to Cart
@@ -611,8 +687,8 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance Heart</h3>
-                <p className="text-white/60 font-light text-sm">$129.00</p>
+                <h3 className="text-white font-light text-xl mb-1">Avance HEART CORE</h3>
+                <p className="text-white/60 font-light text-sm">$299.00</p>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ChevronLeft, ChevronRight, ShoppingCart, X, Minus, Plus, Trash2, Menu } from "lucide-react"
-import { useEffect, useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState, useRef } from "react"
 import { useParams } from "next/navigation"
 
 interface CartItem {
@@ -25,63 +25,110 @@ interface Product {
 const products: Record<string, Product> = {
   watch: {
     id: "watch",
-    name: "Avance Watch",
-    price: 299,
-    description: "The Avance Watch is your ultimate health companion, seamlessly tracking your vitals 24/7. With advanced biometric sensors, it monitors heart rate, blood oxygen, sleep patterns, and stress levels with medical-grade precision.",
+    name: "Avance APEX",
+    price: 1199,
+    description: "Avance APEX is the most advanced device in the Avance ecosystem. Built for users who demand absolute performance, medical-grade insights, and a refined premium aesthetic. Its square case blends elite sport design with a luxury technical leather strap, designed for daily wear, training, and recovery. APEX features on-device artificial intelligence, capable of processing and interpreting biometric data in real time without constant phone dependency. It doesn't just track metrics — it understands your body and adapts to it.",
     features: [
-      "24/7 heart rate monitoring",
-      "Blood oxygen (SpO2) tracking",
-      "Advanced sleep analysis",
-      "Stress & recovery metrics",
-      "7-day battery life",
-      "Water resistant to 50m"
+      "Advanced VO₂ Max tracking (continuous + predictive)",
+      "24/7 heart rate monitoring (optical + adaptive AI)",
+      "Heart Rate Variability (HRV)",
+      "Respiratory rate & breathing patterns",
+      "Blood oxygen saturation (SpO₂)",
+      "Stress & nervous system load",
+      "Advanced sleep tracking (deep, REM, recovery score)",
+      "Body Battery & Readiness Score (AI-driven)",
+      "Estimated body temperature trends",
+      "Multi-band high-precision GPS",
+      "Training, recovery, and overtraining prevention",
+      "Personalized AI coaching",
+      "Predictive fatigue and overload alerts",
+      "Daily automated insights",
+      "Full integration with the Avance AI Platform"
     ],
     images: ["/images/reloj1.png", "/images/reloj2.png", "/images/reloj3.png", "/images/reloj4.png"]
   },
   band: {
     id: "band",
-    name: "Avance Band",
-    price: 79,
-    description: "The Avance Band offers essential health tracking in a minimalist design. Perfect for those who want accurate fitness data without the bulk of a traditional smartwatch.",
+    name: "Avance PULSE",
+    price: 449,
+    description: "Avance PULSE is built for movement. Lightweight, flexible, and ultra-durable, it features an AeroFlex™ performance fabric band — breathable, sweat-resistant, hypoallergenic, and fast-drying. Designed for athletes and everyday training, PULSE delivers core Avance metrics in a clean, sport-focused form factor. Ideal for runners, athletes, daily training, and users who prefer a lightweight sport-first device.",
     features: [
-      "Continuous heart rate tracking",
-      "Step & calorie counting",
-      "Sleep monitoring",
-      "Workout detection",
-      "14-day battery life",
-      "Lightweight & comfortable"
+      "Continuous heart rate monitoring",
+      "HRV & stress tracking",
+      "Respiratory rate",
+      "SpO₂",
+      "Advanced sleep tracking",
+      "Daily readiness score",
+      "Activity & training load monitoring",
+      "AI-powered recovery insights"
     ],
     images: ["/images/band1.png", "/images/band2.png"]
   },
   ring: {
     id: "ring",
-    name: "Avance Rings",
-    price: 150,
-    description: "The Avance Ring brings sophisticated health monitoring to your finger. Crafted from premium titanium, it tracks your wellness metrics discreetly throughout the day and night.",
+    name: "Avance ORBIT",
+    price: 399,
+    description: "Avance ORBIT delivers powerful health insights in an ultra-discreet form. Designed to be worn 24/7, ORBIT excels at tracking sleep, recovery, and internal physiological signals that traditional wearables often miss. Ideal for users focused on long-term health optimization. AI Focus: Recovery, prevention, hormonal balance, and overall well-being.",
     features: [
-      "Sleep quality scoring",
-      "Readiness assessment",
-      "Activity tracking",
-      "Temperature sensing",
-      "Up to 5 days battery",
-      "Titanium construction"
+      "Basal body temperature tracking",
+      "Nighttime heart rate monitoring",
+      "Deep HRV analysis",
+      "Sleep SpO₂",
+      "Night respiratory tracking",
+      "Advanced sleep score",
+      "Recovery & readiness insights",
+      "Early stress detection"
     ],
-    images: ["/images/RING4.png", "/images/RING2.png", "/images/RING1.png", "/images/RING3.png"]
+    images: ["/images/RING1.png", "/images/RING2.png"]
   },
   wat: {
     id: "wat",
-    name: "Avance Wat",
-    price: 199,
-    description: "The Avance Wat combines style with substance, offering comprehensive health insights in an elegant package. Its AI-powered coaching adapts to your unique physiology.",
+    name: "Avance WATT PRO",
+    price: 699,
+    description: "Avance WATT PRO is built for power and performance. Featuring a high-durability sport rubber strap, it's designed to handle intense training while maintaining a refined, modern aesthetic. Less luxury-oriented than APEX, but equally serious about performance. Ideal for high-intensity training, endurance sports, and performance-driven users.",
     features: [
-      "AI health coaching",
-      "ECG monitoring",
-      "Body composition analysis",
-      "Hydration tracking",
-      "10-day battery life",
-      "Premium materials"
+      "Advanced heart rate monitoring",
+      "HRV",
+      "VO₂ Max",
+      "Respiratory rate",
+      "SpO₂",
+      "High-precision GPS",
+      "Training load & performance metrics",
+      "AI-driven training recommendations",
+      "Recovery tracking"
     ],
-    images: ["/images/wat1.png", "/images/wat2.png", "/images/wat3.png"]
+    images: ["/images/watt1.png", "/images/watt2.png", "/images/watt3.png"]
+  },
+  banda: {
+    id: "banda",
+    name: "Avance CORE ARM",
+    price: 349,
+    description: "Avance CORE ARM is worn on the upper arm, delivering more stable and accurate heart rate data than wrist-based devices during demanding workouts. Designed for athletes who prioritize precision without wearing a watch. Ideal for strength training, HIIT, cross-training, and advanced performance tracking.",
+    features: [
+      "High-accuracy heart rate monitoring",
+      "Real-time HRV",
+      "Respiratory rate",
+      "SpO₂",
+      "Calorie burn & training load",
+      "Recovery & fatigue insights",
+      "Direct integration with Avance AI"
+    ],
+    images: ["/images/banda1.png", "/images/banda2.png"]
+  },
+  heart: {
+    id: "heart",
+    name: "Avance HEART CORE",
+    price: 299,
+    description: "Avance HEART CORE delivers the highest level of biometric accuracy in the Avance ecosystem. Worn on the chest, it provides near-clinical heart rate precision, making it the gold standard for endurance and performance athletes. Ideal for running, cycling, elite training, and professional-level performance analysis.",
+    features: [
+      "Ultra-precise heart rate monitoring",
+      "High-fidelity HRV analysis",
+      "Respiratory tracking",
+      "Accurate training zones",
+      "Training load & recovery metrics",
+      "Full Avance AI integration"
+    ],
+    images: ["/images/heart1.png", "/images/heart2.png"]
   }
 }
 
@@ -89,7 +136,55 @@ const productImages: Record<string, string> = {
   watch: "/images/reloj1.png",
   band: "/images/band1.png",
   ring: "/images/RING1.png",
-  wat: "/images/wat1.png"
+  wat: "/images/watt1.png",
+  banda: "/images/banda1.png",
+  heart: "/images/heart1.png"
+}
+
+interface FlyingParticle {
+  id: number
+  startX: number
+  startY: number
+  endX: number
+  endY: number
+}
+
+function FlyingParticleComponent({ particle }: { particle: FlyingParticle }) {
+  const [position, setPosition] = useState({ x: particle.startX, y: particle.startY, scale: 1, opacity: 1 })
+  
+  useEffect(() => {
+    // Start animation after a tiny delay to ensure transition works
+    const timeout = setTimeout(() => {
+      setPosition({
+        x: particle.endX,
+        y: particle.endY,
+        scale: 0.3,
+        opacity: 0
+      })
+    }, 10)
+    return () => clearTimeout(timeout)
+  }, [particle])
+  
+  return (
+    <div
+      className="fixed pointer-events-none z-[200]"
+      style={{
+        left: position.x,
+        top: position.y,
+        transform: `translate(-50%, -50%) scale(${position.scale})`,
+        opacity: position.opacity,
+        transition: 'all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1)'
+      }}
+    >
+      <div 
+        className="w-5 h-5 rounded-full"
+        style={{
+          background: 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.9) 20%, rgba(200,200,255,0.5) 50%, transparent 100%)',
+          boxShadow: '0 0 20px 10px rgba(255,255,255,0.8), 0 0 40px 20px rgba(200,200,255,0.4), 0 0 60px 30px rgba(150,150,255,0.2)'
+        }}
+      />
+    </div>
+  )
 }
 
 export default function ProductPage() {
@@ -102,6 +197,8 @@ export default function ProductPage() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [flyingParticles, setFlyingParticles] = useState<FlyingParticle[]>([])
+  const cartButtonRef = useRef<HTMLButtonElement>(null)
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -142,7 +239,29 @@ export default function ProductPage() {
     }
   }, [])
 
-  const addToCart = (id: string, name: string, price: number) => {
+  const addToCart = (id: string, name: string, price: number, event?: React.MouseEvent) => {
+    // Create flying particle animation
+    if (event && cartButtonRef.current) {
+      const button = event.currentTarget as HTMLElement
+      const buttonRect = button.getBoundingClientRect()
+      const cartRect = cartButtonRef.current.getBoundingClientRect()
+      
+      const particle: FlyingParticle = {
+        id: Date.now(),
+        startX: buttonRect.left + buttonRect.width / 2,
+        startY: buttonRect.top + buttonRect.height / 2,
+        endX: cartRect.left + cartRect.width / 2,
+        endY: cartRect.top + cartRect.height / 2
+      }
+      
+      setFlyingParticles(prev => [...prev, particle])
+      
+      // Remove particle after animation
+      setTimeout(() => {
+        setFlyingParticles(prev => prev.filter(p => p.id !== particle.id))
+      }, 800)
+    }
+    
     setCart(prev => {
       const existingItem = prev.find(item => item.id === id)
       if (existingItem) {
@@ -204,6 +323,11 @@ export default function ProductPage() {
 
   return (
     <div className="relative dark min-h-screen" style={{ backgroundColor: "#000000" }}>
+      {/* Flying Particles */}
+      {flyingParticles.map(particle => (
+        <FlyingParticleComponent key={particle.id} particle={particle} />
+      ))}
+      
       {/* Header */}
       <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4 md:px-8">
         <nav className={`bg-black/10 backdrop-blur-xl border border-white/20 px-4 md:px-8 py-4 ${isMobileMenuOpen ? 'rounded-2xl' : 'rounded-full'}`}>
@@ -248,6 +372,7 @@ export default function ProductPage() {
             <div className="flex items-center gap-3">
               {/* Cart Button */}
               <button
+                ref={cartButtonRef}
                 onClick={() => setIsCartOpen(true)}
                 className="group flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3 md:px-4 py-2 text-white/90 hover:text-white hover:bg-white/20 transition-all duration-300 relative"
               >
@@ -321,50 +446,45 @@ export default function ProductPage() {
             <span className="text-sm font-light tracking-wider">Back to Shop</span>
           </Link>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Product Image */}
-            <div 
-              className="rounded-lg overflow-hidden relative aspect-square"
-              style={{
-                background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)",
-                boxShadow: "0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)"
-              }}
-            >
-              {/* Subtle backlight glow */}
+            <div>
               <div 
-                className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                className="rounded-lg overflow-hidden relative aspect-square"
                 style={{
-                  background: "radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, transparent 50%)"
+                  background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)"
                 }}
-              />
-              <Image 
-                src={product.images[currentImage]} 
-                alt={product.name} 
-                fill 
-                className="object-contain"
-              />
-              
-              {/* Navigation Arrows */}
-              {product.images.length > 1 && (
-                <>
-                  <button 
-                    onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/70 transition-all z-20"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  <button 
-                    onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/70 transition-all z-20"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </>
-              )}
+              >
+                <Image 
+                  src={product.images[currentImage]} 
+                  alt={product.name} 
+                  fill 
+                  className="object-contain"
+                />
+                
+                {/* Navigation Arrows */}
+                {product.images.length > 1 && (
+                  <>
+                    <button 
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/70 transition-all z-20"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                    <button 
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/70 transition-all z-20"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
 
             {/* Product Info */}
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col">
               <h1 className="text-4xl md:text-5xl font-extralight text-white mb-4">{product.name}</h1>
               <p className="text-3xl font-light text-white/80 mb-8">${product.price.toFixed(2)}</p>
               
@@ -387,7 +507,7 @@ export default function ProductPage() {
 
               {/* Add to Cart Button */}
               <button 
-                onClick={() => addToCart(product.id, product.name, product.price)}
+                onClick={(e) => addToCart(product.id, product.name, product.price, e)}
                 className="w-full py-4 border border-white/30 text-white rounded font-mono text-sm uppercase tracking-wider hover:bg-white/10 transition-all"
               >
                 Add to Cart
