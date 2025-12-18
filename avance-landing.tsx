@@ -185,14 +185,13 @@ export default function AvanceLanding() {
       <section id="home" className="relative min-h-screen flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/avance-hero.png"
+            src="/images/background1.jpeg"
             alt="Avance - You. Powered."
             fill
             className="object-cover object-center scale-100"
             priority
             quality={100}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent"></div>
         </div>
         <div className="relative z-10 container mx-auto px-8">
           <div className="max-w-xl">
