@@ -16,7 +16,9 @@ const productImages: Record<string, string> = {
   watch: "/images/reloj1.png",
   band: "/images/band1.png",
   ring: "/images/RING1.png",
-  wat: "/images/wat1.png"
+  wat: "/images/watt1.png",
+  banda: "/images/banda1.png",
+  heart: "/images/heart1.png"
 }
 
 export default function ShopPage() {
@@ -24,6 +26,8 @@ export default function ShopPage() {
   const [currentWatch, setCurrentWatch] = useState(0)
   const [currentBand, setCurrentBand] = useState(0)
   const [currentWat, setCurrentWat] = useState(0)
+  const [currentBanda, setCurrentBanda] = useState(0)
+  const [currentHeart, setCurrentHeart] = useState(0)
   const [cart, setCart] = useState<CartItem[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -92,10 +96,8 @@ export default function ShopPage() {
   const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0)
   
   const ringImages = [
-    "/images/RING4.png",
-    "/images/RING2.png",
     "/images/RING1.png",
-    "/images/RING3.png"
+    "/images/RING2.png"
   ]
 
   const watchImages = [
@@ -111,9 +113,19 @@ export default function ShopPage() {
   ]
 
   const watImages = [
-    "/images/wat1.png",
-    "/images/wat2.png",
-    "/images/wat3.png"
+    "/images/watt1.png",
+    "/images/watt2.png",
+    "/images/watt3.png"
+  ]
+
+  const bandaImages = [
+    "/images/banda1.png",
+    "/images/banda2.png"
+  ]
+
+  const heartImages = [
+    "/images/heart1.png",
+    "/images/heart2.png"
   ]
 
   const nextRing = () => {
@@ -146,6 +158,22 @@ export default function ShopPage() {
 
   const prevWat = () => {
     setCurrentWat((prev) => (prev - 1 + watImages.length) % watImages.length)
+  }
+
+  const nextBanda = () => {
+    setCurrentBanda((prev) => (prev + 1) % bandaImages.length)
+  }
+
+  const prevBanda = () => {
+    setCurrentBanda((prev) => (prev - 1 + bandaImages.length) % bandaImages.length)
+  }
+
+  const nextHeart = () => {
+    setCurrentHeart((prev) => (prev + 1) % heartImages.length)
+  }
+
+  const prevHeart = () => {
+    setCurrentHeart((prev) => (prev - 1 + heartImages.length) % heartImages.length)
   }
 
   const scrollToSection = (sectionId: string) => {
@@ -305,17 +333,10 @@ export default function ShopPage() {
               className="group rounded-lg overflow-hidden"
               style={{
                 background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)",
-                boxShadow: "0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)"
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)"
               }}
             >
               <div className="aspect-square relative" style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)" }}>
-                {/* Subtle backlight glow */}
-                <div 
-                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                  style={{
-                    background: "radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, transparent 50%)"
-                  }}
-                />
                 <Image 
                   src={watchImages[currentWatch]} 
                   alt={`Watch ${currentWatch + 1}`} 
@@ -360,7 +381,7 @@ export default function ShopPage() {
               className="group rounded-lg overflow-hidden"
               style={{
                 background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)",
-                boxShadow: "0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)"
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)"
               }}
             >
               <div className="aspect-square relative" style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)" }}>
@@ -408,7 +429,7 @@ export default function ShopPage() {
               className="group rounded-lg overflow-hidden"
               style={{
                 background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)",
-                boxShadow: "0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)"
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)"
               }}
             >
               <div className="aspect-square relative" style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)" }}>
@@ -456,13 +477,13 @@ export default function ShopPage() {
               className="group rounded-lg overflow-hidden"
               style={{
                 background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)",
-                boxShadow: "0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)"
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)"
               }}
             >
               <div className="aspect-square relative" style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)" }}>
                 <Image 
                   src={watImages[currentWat]} 
-                  alt={`Wat ${currentWat + 1}`} 
+                  alt={`Watt ${currentWat + 1}`} 
                   fill 
                   className="object-contain"
                 />
@@ -485,7 +506,7 @@ export default function ShopPage() {
               <div className="p-6 border-t border-white/10">
                 <div className="flex gap-3 mb-4">
                   <button 
-                    onClick={() => addToCart("wat", "Avance Wat", 199)}
+                    onClick={() => addToCart("wat", "Avance Watt", 199)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
                   >
                     Add to Cart
@@ -494,8 +515,104 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance Wat</h3>
+                <h3 className="text-white font-light text-xl mb-1">Avance Watt</h3>
                 <p className="text-white/60 font-light text-sm">$199.00</p>
+              </div>
+            </div>
+
+            {/* Product 5 - Banda Carousel */}
+            <div 
+              className="group rounded-lg overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)"
+              }}
+            >
+              <div className="aspect-square relative" style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)" }}>
+                <Image 
+                  src={bandaImages[currentBanda]} 
+                  alt={`Banda ${currentBanda + 1}`} 
+                  fill 
+                  className="object-contain"
+                />
+                
+                {/* Navigation Arrows */}
+                <button 
+                  onClick={prevBanda}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/70 transition-all z-20"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button 
+                  onClick={nextBanda}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/70 transition-all z-20"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+
+              </div>
+              <div className="p-6 border-t border-white/10">
+                <div className="flex gap-3 mb-4">
+                  <button 
+                    onClick={() => addToCart("banda", "Avance Banda", 89)}
+                    className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
+                  >
+                    Add to Cart
+                  </button>
+                  <Link href="/product/banda" className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all text-center">
+                    View Details
+                  </Link>
+                </div>
+                <h3 className="text-white font-light text-xl mb-1">Avance Banda</h3>
+                <p className="text-white/60 font-light text-sm">$89.00</p>
+              </div>
+            </div>
+
+            {/* Product 6 - Heart Carousel */}
+            <div 
+              className="group rounded-lg overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)"
+              }}
+            >
+              <div className="aspect-square relative" style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)" }}>
+                <Image 
+                  src={heartImages[currentHeart]} 
+                  alt={`Heart ${currentHeart + 1}`} 
+                  fill 
+                  className="object-contain"
+                />
+                
+                {/* Navigation Arrows */}
+                <button 
+                  onClick={prevHeart}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/70 transition-all z-20"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button 
+                  onClick={nextHeart}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/70 transition-all z-20"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+
+              </div>
+              <div className="p-6 border-t border-white/10">
+                <div className="flex gap-3 mb-4">
+                  <button 
+                    onClick={() => addToCart("heart", "Avance Heart", 129)}
+                    className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
+                  >
+                    Add to Cart
+                  </button>
+                  <Link href="/product/heart" className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all text-center">
+                    View Details
+                  </Link>
+                </div>
+                <h3 className="text-white font-light text-xl mb-1">Avance Heart</h3>
+                <p className="text-white/60 font-light text-sm">$129.00</p>
               </div>
             </div>
           </div>
