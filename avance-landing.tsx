@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight, Menu, X, Plus } from "lucide-react"
@@ -69,20 +70,22 @@ export default function AvanceLanding() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center">
-              <Image
-                src="/images/logo-avance1.png"
-                alt="Avance"
-                width={35}
-                height={35}
-                className="object-contain md:hidden"
-              />
-              <Image
-                src="/images/12345.png"
-                alt="Avance"
-                width={120}
-                height={24}
-                className="object-contain hidden md:block"
-              />
+              <Link href="/">
+                <Image
+                  src="/images/logo-avance1.png"
+                  alt="Avance"
+                  width={35}
+                  height={35}
+                  className="object-contain md:hidden"
+                />
+                <Image
+                  src="/images/12345.png"
+                  alt="Avance"
+                  width={120}
+                  height={24}
+                  className="object-contain hidden md:block"
+                />
+              </Link>
             </div>
 
             {/* Navigation - Desktop */}
