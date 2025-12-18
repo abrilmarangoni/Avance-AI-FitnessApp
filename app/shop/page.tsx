@@ -436,7 +436,9 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-white font-light text-xl mb-1">Avance APEX</h3>
+                <p className="text-white/60 font-light text-sm mb-0 md:group-hover:mb-4 transition-all duration-300">$1,199.00</p>
+                <div className="flex gap-3 max-h-0 md:max-h-0 md:group-hover:max-h-20 overflow-hidden opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 mt-4 md:mt-0">
                   <button 
                     onClick={(e) => addToCart("watch", "Avance APEX", 1199, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -447,8 +449,6 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance APEX</h3>
-                <p className="text-white/60 font-light text-sm">$1,199.00</p>
               </div>
             </div>
 
@@ -484,7 +484,9 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-white font-light text-xl mb-1">Avance PULSE</h3>
+                <p className="text-white/60 font-light text-sm mb-0 md:group-hover:mb-4 transition-all duration-300">$449.00</p>
+                <div className="flex gap-3 max-h-0 md:max-h-0 md:group-hover:max-h-20 overflow-hidden opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 mt-4 md:mt-0">
                   <button 
                     onClick={(e) => addToCart("band", "Avance PULSE", 449, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -495,8 +497,6 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance PULSE</h3>
-                <p className="text-white/60 font-light text-sm">$449.00</p>
               </div>
             </div>
 
@@ -532,7 +532,9 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-white font-light text-xl mb-1">Avance ORBIT</h3>
+                <p className="text-white/60 font-light text-sm mb-0 md:group-hover:mb-4 transition-all duration-300">$399.00</p>
+                <div className="flex gap-3 max-h-0 md:max-h-0 md:group-hover:max-h-20 overflow-hidden opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 mt-4 md:mt-0">
                   <button 
                     onClick={(e) => addToCart("ring", "Avance ORBIT", 399, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -543,8 +545,6 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance ORBIT</h3>
-                <p className="text-white/60 font-light text-sm">$399.00</p>
               </div>
             </div>
 
@@ -580,7 +580,9 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-white font-light text-xl mb-1">Avance WATT PRO</h3>
+                <p className="text-white/60 font-light text-sm mb-0 md:group-hover:mb-4 transition-all duration-300">$699.00</p>
+                <div className="flex gap-3 max-h-0 md:max-h-0 md:group-hover:max-h-20 overflow-hidden opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 mt-4 md:mt-0">
                   <button 
                     onClick={(e) => addToCart("wat", "Avance WATT PRO", 699, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -591,8 +593,6 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance WATT PRO</h3>
-                <p className="text-white/60 font-light text-sm">$699.00</p>
               </div>
             </div>
 
@@ -628,7 +628,9 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-white font-light text-xl mb-1">Avance CORE ARM</h3>
+                <p className="text-white/60 font-light text-sm mb-0 md:group-hover:mb-4 transition-all duration-300">$349.00</p>
+                <div className="flex gap-3 max-h-0 md:max-h-0 md:group-hover:max-h-20 overflow-hidden opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 mt-4 md:mt-0">
                   <button 
                     onClick={(e) => addToCart("banda", "Avance CORE ARM", 349, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -639,8 +641,6 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance CORE ARM</h3>
-                <p className="text-white/60 font-light text-sm">$349.00</p>
               </div>
             </div>
 
@@ -676,7 +676,9 @@ export default function ShopPage() {
 
               </div>
               <div className="p-6 border-t border-white/10">
-                <div className="flex gap-3 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-white font-light text-xl mb-1">Avance HEART CORE</h3>
+                <p className="text-white/60 font-light text-sm mb-0 md:group-hover:mb-4 transition-all duration-300">$299.00</p>
+                <div className="flex gap-3 max-h-0 md:max-h-0 md:group-hover:max-h-20 overflow-hidden opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 mt-4 md:mt-0">
                   <button 
                     onClick={(e) => addToCart("heart", "Avance HEART CORE", 299, e)}
                     className="flex-1 py-3 border border-white/30 text-white rounded font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-all"
@@ -687,8 +689,6 @@ export default function ShopPage() {
                     View Details
                   </Link>
                 </div>
-                <h3 className="text-white font-light text-xl mb-1">Avance HEART CORE</h3>
-                <p className="text-white/60 font-light text-sm">$299.00</p>
               </div>
             </div>
           </div>
