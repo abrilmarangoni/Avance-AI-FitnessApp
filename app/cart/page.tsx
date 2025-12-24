@@ -84,7 +84,7 @@ export default function CartPage() {
     <div className="relative dark min-h-screen" style={{ backgroundColor: "#000000" }}>
       {/* Header */}
       <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4 md:px-8">
-        <nav className={`bg-black/10 backdrop-blur-xl border border-white/20 px-4 md:px-8 py-4 ${isMobileMenuOpen ? 'rounded-2xl' : 'rounded-full'}`}>
+        <nav className={`bg-black/10 backdrop-blur-xl border border-white/20 px-4 md:px-8 py-4 ${isMobileMenuOpen ? 'rounded-2xl' : 'rounded-lg'}`}>
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center">

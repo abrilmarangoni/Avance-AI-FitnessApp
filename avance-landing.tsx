@@ -66,7 +66,7 @@ export default function AvanceLanding() {
     <div className="relative dark" style={{ backgroundColor: "#000000" }}>
       {/* Header */}
       <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4 md:px-8">
-        <nav className={`bg-black/10 backdrop-blur-xl border border-white/20 px-4 md:px-8 py-4 ${isMobileMenuOpen ? 'rounded-2xl' : 'rounded-full'}`}>
+        <nav className={`bg-black/10 backdrop-blur-xl border border-white/20 px-4 md:px-8 py-4 ${isMobileMenuOpen ? 'rounded-2xl' : 'rounded-lg'}`}>
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center">
@@ -119,7 +119,7 @@ export default function AvanceLanding() {
             {/* Desktop Download Button */}
             <button
               onClick={() => scrollToSection("download")}
-              className="hidden md:flex group items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 text-white/90 hover:text-white hover:bg-white/20 transition-all duration-300"
+              className="hidden md:flex group items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded px-4 py-2 text-white/90 hover:text-white hover:bg-white/20 transition-all duration-300"
             >
               <span className="text-sm font-light tracking-wider uppercase">Download</span>
               <ArrowRight className="w-4 h-4 group-hover:-rotate-45 transition-transform duration-300" />
@@ -375,7 +375,7 @@ export default function AvanceLanding() {
                 </div>
                 <a 
                   href="/shop"
-                  className="hidden md:inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-mono text-xs uppercase tracking-wider hover:bg-white/20 transition-all"
+                  className="hidden md:inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded text-white font-mono text-xs uppercase tracking-wider hover:bg-white/20 transition-all"
                 >
                   Shop Now
                   <ArrowRight className="w-4 h-4" />
