@@ -186,16 +186,17 @@ export default function AvanceLanding() {
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/background1.jpeg"
-            alt="Avance - You. Powered."
-            fill
-            className="object-cover object-center scale-100"
-            priority
-            quality={100}
-          />
+      <section id="home" className="relative h-screen flex items-center bg-black overflow-hidden">
+        <div className="absolute bottom-0 right-[-100px] z-0 h-[calc(85vh-30px)]">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="h-full w-auto object-contain"
+          >
+            <source src="/videobueno.mp4" type="video/mp4" />
+          </video>
         </div>
         <div className="relative z-10 container mx-auto px-8">
           <div className="max-w-xl">
