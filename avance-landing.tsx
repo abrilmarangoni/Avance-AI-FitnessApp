@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useRef, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useInView } from "framer-motion"
 import { ArrowRight, Menu, X, Plus } from "lucide-react"
 import Footer from "@/components/Footer"
 
@@ -187,16 +187,14 @@ export default function AvanceLanding() {
 
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center bg-black overflow-hidden">
-        <div className="absolute bottom-0 right-[-100px] z-0 h-[calc(85vh-30px)]">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="h-full w-auto object-contain"
-          >
-            <source src="/videobueno.mp4" type="video/mp4" />
-          </video>
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/back1.jpeg"
+            alt="Avance Hero"
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
         <div className="relative z-10 container mx-auto px-8">
           <div className="max-w-xl">
@@ -217,29 +215,45 @@ export default function AvanceLanding() {
           <div className="max-w-6xl mx-auto">
             
             {/* Section Label */}
-            <div className="mb-8">
+            <motion.div 
+              className="mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
               <span className="text-white/30 font-mono text-sm tracking-[0.3em] uppercase">
                 001 — About
               </span>
-            </div>
+            </motion.div>
 
             {/* Mission Statement */}
-            <div className="text-center max-w-4xl mx-auto mb-20">
+            <motion.div 
+              className="text-center max-w-4xl mx-auto mb-20"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white leading-[1.15] tracking-tight mb-10">
                 Be understood, not just measured.
               </h2>
               <p className="text-lg md:text-xl text-white/50 font-light leading-relaxed">
                 Because performance isn't only about what your body can do, but how you feel inside it. Avance connects biometrics, mental health, and AI companions to support your performance, well-being, and long-term health.
               </p>
-            </div>
+            </motion.div>
 
             {/* Feature Cards */}
             <div className="grid md:grid-cols-3 gap-6">
-              {aboutFeatures.map((feature) => (
-                <div
+              {aboutFeatures.map((feature, index) => (
+                <motion.div
                   key={feature.id}
                   className="relative bg-white/[0.02] hover:bg-white/[0.04] p-8 cursor-pointer group transition-all duration-300 h-full border border-white/[0.05] rounded-3xl"
                   onClick={() => setSelectedFeature(feature.id)}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  viewport={{ once: true, margin: "-50px" }}
                 >
                   <button className="absolute top-6 right-6 w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-colors z-10">
                     <Plus className="w-4 h-4 text-white/40 group-hover:text-white/70" />
@@ -265,7 +279,7 @@ export default function AvanceLanding() {
                       {feature.shortDescription}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -332,14 +346,26 @@ export default function AvanceLanding() {
           <div className="max-w-6xl mx-auto">
             
             {/* Section Label */}
-            <div className="mb-12">
+            <motion.div 
+              className="mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
               <span className="text-white/30 font-mono text-sm tracking-[0.3em] uppercase">
                 002 — Shop
               </span>
-            </div>
+            </motion.div>
 
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+            <motion.div 
+              className="flex flex-col md:flex-row md:items-end md:justify-between mb-12"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white leading-tight mb-6 md:mb-0">
                 The System
               </h2>
@@ -350,10 +376,16 @@ export default function AvanceLanding() {
                 <span className="font-mono text-sm uppercase tracking-wider">View All Products</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
-            </div>
+            </motion.div>
 
             {/* Video Showcase */}
-            <div className="relative rounded-2xl overflow-hidden mb-16">
+            <motion.div 
+              className="relative rounded-2xl overflow-hidden mb-16"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
               <video
                 ref={videoRef}
                 autoPlay
@@ -382,7 +414,7 @@ export default function AvanceLanding() {
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
-            </div>
+            </motion.div>
 
 
           </div>
@@ -395,21 +427,39 @@ export default function AvanceLanding() {
           <div className="max-w-6xl mx-auto">
             
             {/* Section Label */}
-            <div className="mb-8">
+            <motion.div 
+              className="mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
               <span className="text-white/30 font-mono text-sm tracking-[0.3em] uppercase">
                 003 — Features
               </span>
-            </div>
+            </motion.div>
 
             {/* Header */}
-            <div className="mb-16">
+            <motion.div 
+              className="mb-16"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white leading-tight mb-6">
                 Built for real wellness.
               </h2>
-            </div>
+            </motion.div>
 
             {/* Key Feature - Adaptive Experience */}
-            <div className="bg-white/[0.02] border border-white/[0.05] rounded-3xl p-10 mb-8">
+            <motion.div 
+              className="bg-white/[0.02] border border-white/[0.05] rounded-3xl p-10 mb-8"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
               <div className="text-white/30 font-mono text-xs uppercase tracking-wider mb-6">Key Feature</div>
               <h3 className="text-3xl md:text-4xl font-light text-white mb-4">The entire app adapts to you.</h3>
               <p className="text-white/50 font-light leading-relaxed mb-8 max-w-2xl">
@@ -429,39 +479,69 @@ export default function AvanceLanding() {
                   <p className="text-white/40 text-sm font-light leading-relaxed">Raw data, baselines, minimal interpretation. "HRV -12% vs baseline."</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Features Grid - Simplified */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
               
-              <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6">
+              <motion.div 
+                className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+              >
                 <h3 className="text-lg font-light text-white mb-2">Wearable Ecosystem</h3>
                 <p className="text-white/40 text-sm font-light">Watches, Bands, Rings. Your devices, your data. No dependencies.</p>
-              </div>
+              </motion.div>
 
-              <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6">
+              <motion.div 
+                className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+              >
                 <h3 className="text-lg font-light text-white mb-2">AI Personal Coach</h3>
                 <p className="text-white/40 text-sm font-light">Practical AI that adjusts training based on your body and mind.</p>
-              </div>
+              </motion.div>
 
-              <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6">
+              <motion.div 
+                className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true, margin: "-50px" }}
+              >
                 <h3 className="text-lg font-light text-white mb-2">Mental & Emotional</h3>
                 <p className="text-white/40 text-sm font-light">Daily check-ins, mood tracking, body-mind pattern detection.</p>
-              </div>
+              </motion.div>
 
-              <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6">
+              <motion.div 
+                className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true, margin: "-50px" }}
+              >
                 <h3 className="text-lg font-light text-white mb-2">Privacy First</h3>
                 <p className="text-white/40 text-sm font-light">Your data, your control. HIPAA-aware, privacy-first architecture.</p>
-              </div>
+              </motion.div>
 
             </div>
 
             {/* One-liner */}
-            <div className="border-t border-white/10 pt-10">
+            <motion.div 
+              className="border-t border-white/10 pt-10"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
               <p className="text-white/40 font-light text-base leading-relaxed max-w-2xl">
                 Everything connected — at your level.
               </p>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -473,21 +553,39 @@ export default function AvanceLanding() {
           <div className="max-w-6xl mx-auto">
             
             {/* Section Label */}
-            <div className="mb-8">
+            <motion.div 
+              className="mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
               <span className="text-white/30 font-mono text-sm tracking-[0.3em] uppercase">
                 004 — Community
               </span>
-            </div>
+            </motion.div>
 
             {/* Header */}
-            <div className="mb-12">
+            <motion.div 
+              className="mb-12"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white leading-tight">
                 Trusted by the best.
               </h2>
-            </div>
+            </motion.div>
 
             {/* Bento Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            <motion.div 
+              className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
               
               {/* Large - Ultra Runner with image */}
               <div className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden group cursor-pointer" style={{ minHeight: '400px' }}>
@@ -578,7 +676,7 @@ export default function AvanceLanding() {
               </div>
 
 
-            </div>
+            </motion.div>
 
           </div>
         </div>
