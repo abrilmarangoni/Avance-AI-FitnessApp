@@ -39,7 +39,7 @@ function FeaturesSection() {
               Your data, your way.
             </h2>
             <p className="text-lg text-white/50 font-light max-w-2xl">
-              Choose how deep you want to go. Scroll to compare all three levels.
+              Choose how deep you want to go. Compare all three levels side by side.
             </p>
           </motion.div>
 
@@ -506,14 +506,16 @@ export default function AvanceLanding() {
 
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center bg-black overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/back1.jpeg"
-            alt="Avance Hero"
-            fill
-            className="object-cover"
-            priority
-          />
+        <div className="absolute inset-0 z-0 flex items-end justify-center">
+          <div className="w-full h-[85%] relative">
+            <Image
+              src="/images/back1.jpeg"
+              alt="Avance Hero"
+              fill
+              className="object-contain object-bottom"
+              priority
+            />
+          </div>
           {/* Gradient fade to black at bottom */}
           <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent to-black pointer-events-none" />
         </div>
