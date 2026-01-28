@@ -9,8 +9,6 @@ import Footer from "@/components/Footer"
 
 // Features Section Component
 function FeaturesSection() {
-  const [hoveredLevel, setHoveredLevel] = useState<string | null>(null)
-
   return (
     <section id="features" className="relative py-32" style={{ backgroundColor: "#000000" }}>
       <div className="container mx-auto px-8">
@@ -31,7 +29,7 @@ function FeaturesSection() {
 
           {/* Header */}
           <motion.div 
-            className="mb-16"
+            className="mb-12"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -41,332 +39,289 @@ function FeaturesSection() {
               Your data, your way.
             </h2>
             <p className="text-lg text-white/50 font-light max-w-2xl">
-              Choose how deep you want to go. The entire app adapts to your preferred level of detail.
-            </p>
-          </motion.div>
-
-          {/* Horizontal Accordion */}
-          <motion.div 
-            className="flex flex-col md:flex-row gap-3 min-h-[480px]"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {/* Simple */}
-            <motion.div
-              className={`relative rounded-2xl border overflow-hidden cursor-pointer transition-all duration-500 ${
-                hoveredLevel === "simple" 
-                  ? "border-emerald-500/30 bg-gradient-to-br from-emerald-950/30 to-black" 
-                  : "border-white/[0.06] bg-white/[0.02]"
-              }`}
-              animate={{ 
-                flex: hoveredLevel === "simple" ? 4 : hoveredLevel === null ? 1 : 0.4,
-              }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              onMouseEnter={() => setHoveredLevel("simple")}
-              onMouseLeave={() => setHoveredLevel(null)}
-            >
-              <div className="p-6 h-full flex flex-col">
-                <h3 className="text-xl font-light text-white mb-1">Simple</h3>
-                <p className="text-white/30 text-xs">Human insights</p>
-
-                <AnimatePresence>
-                  {hoveredLevel === "simple" && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                      className="flex-1 flex flex-col justify-center mt-6"
-                    >
-                      {/* Big Score Circle */}
-                      <div className="flex items-center justify-center mb-8">
-                        <div className="relative w-40 h-40">
-                          <svg className="w-40 h-40 transform -rotate-90">
-                            <circle cx="80" cy="80" r="70" stroke="rgba(255,255,255,0.06)" strokeWidth="8" fill="none" />
-                            <circle cx="80" cy="80" r="70" 
-                              stroke="#34d399" 
-                              strokeWidth="8" 
-                              fill="none" 
-                              strokeDasharray="439.8" 
-                              strokeDashoffset="66" 
-                              strokeLinecap="round" 
-                            />
-                          </svg>
-                          <div className="absolute inset-0 flex flex-col items-center justify-center">
-                            <span className="text-5xl font-extralight text-white">85</span>
-                            <span className="text-white/30 text-xs mt-1">wellness</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Simple Message */}
-                      <div className="text-center">
-                        <p className="text-white text-xl font-light mb-2">You're doing great</p>
-                        <p className="text-white/40 text-sm">Ready for an active day</p>
-                      </div>
-
-                      {/* Simple Stats Row */}
-                      <div className="flex justify-center gap-12 mt-8">
-                        <div className="text-center">
-                          <div className="text-2xl font-light text-emerald-400">High</div>
-                          <div className="text-white/30 text-xs mt-1">Energy</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-light text-teal-400">Good</div>
-                          <div className="text-white/30 text-xs mt-1">Sleep</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-light text-cyan-400">Low</div>
-                          <div className="text-white/30 text-xs mt-1">Stress</div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-
-            {/* Balanced */}
-            <motion.div
-              className={`relative rounded-2xl border overflow-hidden cursor-pointer transition-all duration-500 ${
-                hoveredLevel === "balanced" 
-                  ? "border-violet-500/30 bg-gradient-to-br from-violet-950/30 to-black" 
-                  : "border-white/[0.06] bg-white/[0.02]"
-              }`}
-              animate={{ 
-                flex: hoveredLevel === "balanced" ? 4 : hoveredLevel === null ? 1 : 0.4,
-              }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              onMouseEnter={() => setHoveredLevel("balanced")}
-              onMouseLeave={() => setHoveredLevel(null)}
-            >
-              <div className="p-6 h-full flex flex-col">
-                <h3 className="text-xl font-light text-white mb-1">Balanced</h3>
-                <p className="text-white/30 text-xs">Visual analytics</p>
-
-                <AnimatePresence>
-                  {hoveredLevel === "balanced" && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                      className="flex-1 flex flex-col gap-6 mt-6"
-                    >
-                      {/* Sleep Stages - Clean */}
-                      <div>
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="text-white/40 text-xs uppercase tracking-wider">Sleep Stages</span>
-                          <span className="text-violet-400 text-lg font-light">7h 32m</span>
-                        </div>
-                        <div className="flex h-14 rounded-lg overflow-hidden gap-1">
-                          <div className="bg-cyan-500 w-[15%]" />
-                          <div className="bg-blue-500 w-[25%]" />
-                          <div className="bg-violet-500 w-[45%]" />
-                          <div className="bg-purple-500 w-[15%]" />
-                        </div>
-                        <div className="flex justify-between mt-3 text-xs text-white/40">
-                          <span>Awake 15%</span>
-                          <span>Light 25%</span>
-                          <span>Deep 45%</span>
-                          <span>REM 15%</span>
-                        </div>
-                      </div>
-
-                      {/* Weekly Activity Chart - Strong */}
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="text-white/40 text-xs uppercase tracking-wider">Weekly Activity</span>
-                          <span className="text-violet-400 text-sm">+18%</span>
-                        </div>
-                        <div className="flex items-end justify-between h-28 gap-2">
-                          {[65, 45, 80, 55, 95, 70, 85].map((h, i) => (
-                            <div key={i} className="flex-1 flex flex-col items-center gap-2">
-                              <div 
-                                className="w-full rounded-sm bg-violet-500"
-                                style={{ height: `${h}%` }}
-                              />
-                              <span className="text-xs text-white/30">{['M', 'T', 'W', 'T', 'F', 'S', 'S'][i]}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Stats Row - Clean */}
-                      <div className="flex justify-between pt-4 border-t border-white/[0.06]">
-                        <div>
-                          <div className="text-2xl font-light text-white">84</div>
-                          <div className="text-white/30 text-xs">Sleep Score</div>
-                        </div>
-                        <div>
-                          <div className="text-2xl font-light text-white">92%</div>
-                          <div className="text-white/30 text-xs">Efficiency</div>
-                        </div>
-                        <div>
-                          <div className="text-2xl font-light text-white">12m</div>
-                          <div className="text-white/30 text-xs">Latency</div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-
-            {/* Advanced */}
-            <motion.div
-              className={`relative rounded-2xl border overflow-hidden cursor-pointer transition-all duration-500 ${
-                hoveredLevel === "advanced" 
-                  ? "border-orange-500/30 bg-gradient-to-br from-orange-950/30 to-black" 
-                  : "border-white/[0.06] bg-white/[0.02]"
-              }`}
-              animate={{ 
-                flex: hoveredLevel === "advanced" ? 4 : hoveredLevel === null ? 1 : 0.4,
-              }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              onMouseEnter={() => setHoveredLevel("advanced")}
-              onMouseLeave={() => setHoveredLevel(null)}
-            >
-              <div className="p-6 h-full flex flex-col">
-                <h3 className="text-xl font-light text-white mb-1">Advanced</h3>
-                <p className="text-white/30 text-xs">Full metrics</p>
-
-                <AnimatePresence>
-                  {hoveredLevel === "advanced" && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                      className="flex-1 flex flex-col gap-6 mt-6"
-                    >
-                      {/* HRV Chart - Strong */}
-                      <div>
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="text-white/40 text-xs uppercase tracking-wider">HRV Trend</span>
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-3xl font-light text-white">52</span>
-                            <span className="text-white/30 text-sm">ms</span>
-                            <span className="text-emerald-400 text-sm ml-2">↑ 8%</span>
-                          </div>
-                        </div>
-                        <div className="flex items-end gap-1 h-20">
-                          {[35, 42, 38, 45, 40, 48, 44, 52, 47, 55, 50, 52, 48, 54, 52].map((v, i) => (
-                            <div key={i} className="flex-1 bg-orange-500 rounded-sm" style={{ height: `${v}%` }} />
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Metrics Row - Clean */}
-                      <div className="grid grid-cols-3 gap-6">
-                        <div>
-                          <div className="text-white/40 text-xs uppercase tracking-wider mb-2">VO₂ Max</div>
-                          <div className="flex items-baseline gap-1">
-                            <span className="text-3xl font-light text-white">48.2</span>
-                            <span className="text-white/30 text-xs">ml/kg</span>
-                          </div>
-                          <div className="h-2 bg-white/[0.06] rounded-full mt-3 overflow-hidden">
-                            <div className="h-full w-[82%] bg-emerald-500 rounded-full" />
-                          </div>
-                          <div className="text-emerald-400 text-xs mt-2">Elite</div>
-                        </div>
-                        <div>
-                          <div className="text-white/40 text-xs uppercase tracking-wider mb-2">Resting HR</div>
-                          <div className="flex items-baseline gap-1">
-                            <span className="text-3xl font-light text-white">58</span>
-                            <span className="text-white/30 text-xs">bpm</span>
-                          </div>
-                          <div className="h-2 bg-white/[0.06] rounded-full mt-3 overflow-hidden">
-                            <div className="h-full w-[45%] bg-red-500 rounded-full" />
-                          </div>
-                          <div className="text-white/40 text-xs mt-2">Optimal</div>
-                        </div>
-                        <div>
-                          <div className="text-white/40 text-xs uppercase tracking-wider mb-2">Body Temp</div>
-                          <div className="flex items-baseline gap-1">
-                            <span className="text-3xl font-light text-white">36.8</span>
-                            <span className="text-white/30 text-xs">°C</span>
-                          </div>
-                          <div className="h-2 bg-white/[0.06] rounded-full mt-3 overflow-hidden">
-                            <div className="h-full w-[50%] bg-amber-500 rounded-full" />
-                          </div>
-                          <div className="text-white/40 text-xs mt-2">Normal</div>
-                        </div>
-                      </div>
-
-                      {/* Recovery Circle + Bars */}
-                      <div className="flex items-center gap-8 pt-4 border-t border-white/[0.06]">
-                        <div className="relative w-24 h-24 flex-shrink-0">
-                          <svg className="w-24 h-24 transform -rotate-90">
-                            <circle cx="48" cy="48" r="40" stroke="rgba(255,255,255,0.06)" strokeWidth="6" fill="none" />
-                            <circle cx="48" cy="48" r="40" 
-                              stroke="#f97316" 
-                              strokeWidth="6" 
-                              fill="none" 
-                              strokeDasharray="251.2" 
-                              strokeDashoffset="50" 
-                              strokeLinecap="round" 
-                            />
-                          </svg>
-                          <div className="absolute inset-0 flex flex-col items-center justify-center">
-                            <span className="text-2xl font-light text-white">80</span>
-                            <span className="text-white/30 text-[10px]">recovery</span>
-                          </div>
-                        </div>
-                        <div className="flex-1 space-y-3">
-                          <div>
-                            <div className="flex justify-between mb-1">
-                              <span className="text-white/40 text-xs">Sleep Quality</span>
-                              <span className="text-white text-xs">85%</span>
-                            </div>
-                            <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
-                              <div className="h-full w-[85%] bg-violet-500 rounded-full" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="flex justify-between mb-1">
-                              <span className="text-white/40 text-xs">Strain Balance</span>
-                              <span className="text-white text-xs">72%</span>
-                            </div>
-                            <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
-                              <div className="h-full w-[72%] bg-orange-500 rounded-full" />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="flex justify-between mb-1">
-                              <span className="text-white/40 text-xs">HRV Status</span>
-                              <span className="text-white text-xs">78%</span>
-                            </div>
-                            <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
-                              <div className="h-full w-[78%] bg-emerald-500 rounded-full" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Bottom note */}
-          <motion.div 
-            className="mt-12 text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            <p className="text-white/30 font-light text-sm">
-              Hover to explore each level. Switch anytime in the app.
+              Choose how deep you want to go. Scroll to compare all three levels.
             </p>
           </motion.div>
 
         </div>
       </div>
+
+      {/* Cards Container */}
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true, margin: "-50px" }}
+        className="container mx-auto px-8"
+      >
+        <div className="flex flex-col lg:flex-row gap-6 justify-center max-w-6xl mx-auto">
+
+          {/* Simple Card */}
+          <div className="flex-1 min-w-0 max-w-[380px]">
+            <div className="h-[520px] rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 flex flex-col">
+              {/* Header */}
+              <div className="mb-6">
+                <div className="text-emerald-400 text-xs uppercase tracking-wider mb-2">Simple</div>
+                <h3 className="text-2xl font-light text-white">Human insights</h3>
+              </div>
+
+              {/* Big Score Circle */}
+              <div className="flex items-center justify-center mb-4">
+                <div className="relative w-36 h-36">
+                  <svg className="w-36 h-36 transform -rotate-90">
+                    <circle cx="72" cy="72" r="62" stroke="rgba(255,255,255,0.06)" strokeWidth="8" fill="none" />
+                    <circle cx="72" cy="72" r="62" 
+                      stroke="#34d399" 
+                      strokeWidth="8" 
+                      fill="none" 
+                      strokeDasharray="389.6" 
+                      strokeDashoffset="58" 
+                      strokeLinecap="round" 
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-5xl font-extralight text-white">85</span>
+                    <span className="text-white/30 text-xs mt-1">wellness</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Message */}
+              <div className="text-center mb-4">
+                <p className="text-white text-lg font-light mb-1">You're doing great</p>
+                <p className="text-white/40 text-sm">Ready for an active day</p>
+              </div>
+
+              {/* Week Trend - Simple */}
+              <div className="mb-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-white/40 text-xs">This week</span>
+                  <span className="text-emerald-400 text-xs">↑ 12%</span>
+                </div>
+                <div className="flex items-end gap-1 h-10">
+                  {[60, 70, 55, 80, 75, 90, 85].map((h, i) => (
+                    <div 
+                      key={i} 
+                      className={`flex-1 rounded-sm ${i === 6 ? 'bg-emerald-400' : 'bg-white/10'}`}
+                      style={{ height: `${h}%` }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Simple Stats */}
+              <div className="flex justify-between pt-4 border-t border-white/[0.06]">
+                <div className="text-center">
+                  <div className="text-lg font-light text-emerald-400">High</div>
+                  <div className="text-white/30 text-[10px] mt-1">Energy</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-lg font-light text-teal-400">Good</div>
+                  <div className="text-white/30 text-[10px] mt-1">Sleep</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-lg font-light text-cyan-400">Low</div>
+                  <div className="text-white/30 text-[10px] mt-1">Stress</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Balanced Card */}
+          <div className="flex-1 min-w-0 max-w-[380px]">
+            <div className="h-[520px] rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 flex flex-col">
+              {/* Header */}
+              <div className="mb-6">
+                <div className="text-violet-400 text-xs uppercase tracking-wider mb-2">Balanced</div>
+                <h3 className="text-2xl font-light text-white">Visual analytics</h3>
+              </div>
+
+              {/* Sleep Stages */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-white/40 text-xs uppercase tracking-wider">Sleep</span>
+                  <span className="text-violet-400 text-lg font-light">7h 32m</span>
+                </div>
+                <div className="flex h-12 rounded-lg overflow-hidden gap-1">
+                  <div className="bg-cyan-500 w-[15%]" />
+                  <div className="bg-blue-500 w-[25%]" />
+                  <div className="bg-violet-500 w-[45%]" />
+                  <div className="bg-purple-500 w-[15%]" />
+                </div>
+                <div className="flex justify-between mt-2 text-[10px] text-white/30">
+                  <span>Awake</span>
+                  <span>Light</span>
+                  <span>Deep</span>
+                  <span>REM</span>
+                </div>
+              </div>
+
+              {/* Weekly Activity - Line Chart */}
+              <div className="flex-1">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-white/40 text-xs uppercase tracking-wider">Activity</span>
+                  <span className="text-violet-400 text-sm">+18%</span>
+                </div>
+                <div className="relative h-28 overflow-visible">
+                  {/* SVG Line Chart */}
+                  <svg className="w-full h-full overflow-visible" viewBox="0 10 300 90" preserveAspectRatio="xMidYMid meet">
+                    {/* Gradient fill under the line */}
+                    <defs>
+                      <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.3" />
+                        <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+                    {/* Area fill */}
+                    <path
+                      d="M0,75 C30,65 40,70 50,65 C70,55 80,45 100,40 C120,35 130,55 150,55 C170,55 180,30 200,25 C220,20 240,40 250,45 C270,50 290,35 300,30 L300,100 L0,100 Z"
+                      fill="url(#lineGradient)"
+                    />
+                    {/* Line */}
+                    <path
+                      d="M0,75 C30,65 40,70 50,65 C70,55 80,45 100,40 C120,35 130,55 150,55 C170,55 180,30 200,25 C220,20 240,40 250,45 C270,50 290,35 300,30"
+                      fill="none"
+                      stroke="#8b5cf6"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    {/* Data points */}
+                    {[[0, 75], [50, 65], [100, 40], [150, 55], [200, 25], [250, 45], [300, 30]].map(([x, y], i) => (
+                      <circle key={i} cx={x} cy={y} r="4" fill="#8b5cf6" />
+                    ))}
+                  </svg>
+                </div>
+                {/* Days */}
+                <div className="flex justify-between mt-2">
+                  {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day, i) => (
+                    <span key={i} className="text-[10px] text-white/30 w-8 text-center">{day}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="flex justify-between pt-6 border-t border-white/[0.06]">
+                <div>
+                  <div className="text-2xl font-light text-white">84</div>
+                  <div className="text-white/30 text-xs">Score</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-light text-white">92%</div>
+                  <div className="text-white/30 text-xs">Efficiency</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-light text-white">12m</div>
+                  <div className="text-white/30 text-xs">Latency</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Advanced Card */}
+          <div className="flex-1 min-w-0 max-w-[380px]">
+            <div className="h-[520px] rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 flex flex-col">
+              {/* Header */}
+              <div className="mb-6">
+                <div className="text-orange-400 text-xs uppercase tracking-wider mb-2">Advanced</div>
+                <h3 className="text-2xl font-light text-white">Full metrics</h3>
+              </div>
+
+              {/* HRV Chart */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-white/40 text-xs uppercase tracking-wider">HRV</span>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-2xl font-light text-white">52</span>
+                    <span className="text-white/30 text-xs">ms</span>
+                    <span className="text-emerald-400 text-xs ml-2">↑8%</span>
+                  </div>
+                </div>
+                <div className="flex items-end gap-[3px] h-16">
+                  {[35, 42, 38, 45, 40, 48, 44, 52, 47, 55, 50, 52, 48, 54, 52].map((v, i) => (
+                    <div key={i} className="flex-1 bg-orange-500 rounded-[2px]" style={{ height: `${v}%` }} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Metrics Grid */}
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                <div>
+                  <div className="text-white/30 text-[10px] uppercase mb-1">VO₂</div>
+                  <div className="text-xl font-light text-white">48.2</div>
+                  <div className="h-1.5 bg-white/[0.06] rounded-full mt-2 overflow-hidden">
+                    <div className="h-full w-[82%] bg-emerald-500 rounded-full" />
+                  </div>
+                </div>
+                <div>
+                  <div className="text-white/30 text-[10px] uppercase mb-1">RHR</div>
+                  <div className="text-xl font-light text-white">58</div>
+                  <div className="h-1.5 bg-white/[0.06] rounded-full mt-2 overflow-hidden">
+                    <div className="h-full w-[45%] bg-red-500 rounded-full" />
+                  </div>
+                </div>
+                <div>
+                  <div className="text-white/30 text-[10px] uppercase mb-1">Temp</div>
+                  <div className="text-xl font-light text-white">36.8°</div>
+                  <div className="h-1.5 bg-white/[0.06] rounded-full mt-2 overflow-hidden">
+                    <div className="h-full w-[50%] bg-amber-500 rounded-full" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Recovery */}
+              <div className="flex-1 flex items-center gap-6 pt-4 border-t border-white/[0.06]">
+                <div className="relative w-20 h-20 flex-shrink-0">
+                  <svg className="w-20 h-20 transform -rotate-90">
+                    <circle cx="40" cy="40" r="34" stroke="rgba(255,255,255,0.06)" strokeWidth="5" fill="none" />
+                    <circle cx="40" cy="40" r="34" 
+                      stroke="#f97316" 
+                      strokeWidth="5" 
+                      fill="none" 
+                      strokeDasharray="213.6" 
+                      strokeDashoffset="42.7" 
+                      strokeLinecap="round" 
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-xl font-light text-white">80</span>
+                  </div>
+                </div>
+                <div className="flex-1 space-y-2">
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-white/30 text-[10px]">Sleep</span>
+                      <span className="text-white/50 text-[10px]">85%</span>
+                    </div>
+                    <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+                      <div className="h-full w-[85%] bg-violet-500 rounded-full" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-white/30 text-[10px]">Strain</span>
+                      <span className="text-white/50 text-[10px]">72%</span>
+                    </div>
+                    <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+                      <div className="h-full w-[72%] bg-orange-500 rounded-full" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-white/30 text-[10px]">HRV</span>
+                      <span className="text-white/50 text-[10px]">78%</span>
+                    </div>
+                    <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+                      <div className="h-full w-[78%] bg-emerald-500 rounded-full" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </motion.div>
     </section>
   )
 }
