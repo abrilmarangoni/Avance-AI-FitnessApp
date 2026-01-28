@@ -746,57 +746,57 @@ export default function ShopPage() {
             ) : (
               <>
                 {/* Cart Items */}
-                <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                <div className="flex-1 overflow-y-auto p-6 space-y-3">
                   {cart.map((item) => (
                     <div 
                       key={item.id}
-                      className="rounded-lg p-4"
-                      style={{
-                        background: "linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)",
-                        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05)"
-                      }}
+                      className="rounded-xl p-4 border border-white/[0.08] bg-white/[0.06]"
                     >
-                      <div className="flex items-center gap-4">
-                        {/* Product Image */}
-                        <div className="w-16 h-16 relative flex-shrink-0 bg-black/50 rounded-lg overflow-hidden">
+                      <div className="flex gap-4">
+                        {/* Product Image - Larger */}
+                        <div className="w-24 h-24 relative flex-shrink-0 bg-white/[0.04] rounded-xl overflow-hidden">
                           <Image
                             src={productImages[item.id] || "/images/reloj1.png"}
                             alt={item.name}
                             fill
-                            className="object-contain"
+                            className="object-contain p-2"
                           />
                         </div>
 
-                        {/* Product Info */}
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-white font-light text-sm truncate">{item.name}</h4>
-                          <p className="text-white/60 font-light text-xs">${item.price.toFixed(2)}</p>
-                        </div>
+                        {/* Product Info & Controls */}
+                        <div className="flex-1 flex flex-col justify-between py-1">
+                          <div>
+                            <h4 className="text-white font-light text-base mb-1">{item.name}</h4>
+                            <p className="text-white text-lg font-light">${item.price.toFixed(2)}</p>
+                          </div>
 
-                        {/* Quantity Controls */}
-                        <div className="flex items-center gap-2">
-                          <button 
-                            onClick={() => updateQuantity(item.id, -1)}
-                            className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-all"
-                          >
-                            <Minus className="w-3 h-3" />
-                          </button>
-                          <span className="text-white font-mono text-sm w-6 text-center">{item.quantity}</span>
-                          <button 
-                            onClick={() => updateQuantity(item.id, 1)}
-                            className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-all"
-                          >
-                            <Plus className="w-3 h-3" />
-                          </button>
-                        </div>
+                          {/* Quantity Controls */}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3 bg-white/[0.05] rounded-lg px-2 py-1">
+                              <button 
+                                onClick={() => updateQuantity(item.id, -1)}
+                                className="w-8 h-8 rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all"
+                              >
+                                <Minus className="w-4 h-4" />
+                              </button>
+                              <span className="text-white font-mono text-base w-8 text-center">{item.quantity}</span>
+                              <button 
+                                onClick={() => updateQuantity(item.id, 1)}
+                                className="w-8 h-8 rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all"
+                              >
+                                <Plus className="w-4 h-4" />
+                              </button>
+                            </div>
 
-                        {/* Remove Button */}
-                        <button 
-                          onClick={() => removeItem(item.id)}
-                          className="w-7 h-7 rounded-full flex items-center justify-center text-white/30 hover:text-red-400 transition-all"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                            {/* Remove Button */}
+                            <button 
+                              onClick={() => removeItem(item.id)}
+                              className="w-8 h-8 flex items-center justify-center text-white/40 hover:text-white transition-all"
+                            >
+                              <Trash2 className="w-5 h-5" />
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   ))}

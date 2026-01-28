@@ -7,6 +7,370 @@ import { motion, AnimatePresence, useInView } from "framer-motion"
 import { ArrowRight, Menu, X, Plus } from "lucide-react"
 import Footer from "@/components/Footer"
 
+// Features Section Component
+function FeaturesSection() {
+  const [hoveredLevel, setHoveredLevel] = useState<string | null>(null)
+
+  return (
+    <section id="features" className="relative py-32" style={{ backgroundColor: "#000000" }}>
+      <div className="container mx-auto px-8">
+        <div className="max-w-7xl mx-auto">
+          
+          {/* Section Label */}
+          <motion.div 
+            className="mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <span className="text-white/30 font-mono text-sm tracking-[0.3em] uppercase">
+              003 — Features
+            </span>
+          </motion.div>
+
+          {/* Header */}
+          <motion.div 
+            className="mb-16"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white leading-tight mb-6">
+              Your data, your way.
+            </h2>
+            <p className="text-lg text-white/50 font-light max-w-2xl">
+              Choose how deep you want to go. The entire app adapts to your preferred level of detail.
+            </p>
+          </motion.div>
+
+          {/* Horizontal Accordion */}
+          <motion.div 
+            className="flex flex-col md:flex-row gap-3 min-h-[480px]"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {/* Simple */}
+            <motion.div
+              className={`relative rounded-2xl border overflow-hidden cursor-pointer transition-all duration-500 ${
+                hoveredLevel === "simple" 
+                  ? "border-emerald-500/30 bg-gradient-to-br from-emerald-950/30 to-black" 
+                  : "border-white/[0.06] bg-white/[0.02]"
+              }`}
+              animate={{ 
+                flex: hoveredLevel === "simple" ? 4 : hoveredLevel === null ? 1 : 0.4,
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              onMouseEnter={() => setHoveredLevel("simple")}
+              onMouseLeave={() => setHoveredLevel(null)}
+            >
+              <div className="p-6 h-full flex flex-col">
+                <h3 className="text-xl font-light text-white mb-1">Simple</h3>
+                <p className="text-white/30 text-xs">Human insights</p>
+
+                <AnimatePresence>
+                  {hoveredLevel === "simple" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                      className="flex-1 flex flex-col justify-center mt-6"
+                    >
+                      {/* Big Score Circle */}
+                      <div className="flex items-center justify-center mb-8">
+                        <div className="relative w-40 h-40">
+                          <svg className="w-40 h-40 transform -rotate-90">
+                            <circle cx="80" cy="80" r="70" stroke="rgba(255,255,255,0.06)" strokeWidth="8" fill="none" />
+                            <circle cx="80" cy="80" r="70" 
+                              stroke="#34d399" 
+                              strokeWidth="8" 
+                              fill="none" 
+                              strokeDasharray="439.8" 
+                              strokeDashoffset="66" 
+                              strokeLinecap="round" 
+                            />
+                          </svg>
+                          <div className="absolute inset-0 flex flex-col items-center justify-center">
+                            <span className="text-5xl font-extralight text-white">85</span>
+                            <span className="text-white/30 text-xs mt-1">wellness</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Simple Message */}
+                      <div className="text-center">
+                        <p className="text-white text-xl font-light mb-2">You're doing great</p>
+                        <p className="text-white/40 text-sm">Ready for an active day</p>
+                      </div>
+
+                      {/* Simple Stats Row */}
+                      <div className="flex justify-center gap-12 mt-8">
+                        <div className="text-center">
+                          <div className="text-2xl font-light text-emerald-400">High</div>
+                          <div className="text-white/30 text-xs mt-1">Energy</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-light text-teal-400">Good</div>
+                          <div className="text-white/30 text-xs mt-1">Sleep</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-light text-cyan-400">Low</div>
+                          <div className="text-white/30 text-xs mt-1">Stress</div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+
+            {/* Balanced */}
+            <motion.div
+              className={`relative rounded-2xl border overflow-hidden cursor-pointer transition-all duration-500 ${
+                hoveredLevel === "balanced" 
+                  ? "border-violet-500/30 bg-gradient-to-br from-violet-950/30 to-black" 
+                  : "border-white/[0.06] bg-white/[0.02]"
+              }`}
+              animate={{ 
+                flex: hoveredLevel === "balanced" ? 4 : hoveredLevel === null ? 1 : 0.4,
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              onMouseEnter={() => setHoveredLevel("balanced")}
+              onMouseLeave={() => setHoveredLevel(null)}
+            >
+              <div className="p-6 h-full flex flex-col">
+                <h3 className="text-xl font-light text-white mb-1">Balanced</h3>
+                <p className="text-white/30 text-xs">Visual analytics</p>
+
+                <AnimatePresence>
+                  {hoveredLevel === "balanced" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                      className="flex-1 flex flex-col gap-6 mt-6"
+                    >
+                      {/* Sleep Stages - Clean */}
+                      <div>
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-white/40 text-xs uppercase tracking-wider">Sleep Stages</span>
+                          <span className="text-violet-400 text-lg font-light">7h 32m</span>
+                        </div>
+                        <div className="flex h-14 rounded-lg overflow-hidden gap-1">
+                          <div className="bg-cyan-500 w-[15%]" />
+                          <div className="bg-blue-500 w-[25%]" />
+                          <div className="bg-violet-500 w-[45%]" />
+                          <div className="bg-purple-500 w-[15%]" />
+                        </div>
+                        <div className="flex justify-between mt-3 text-xs text-white/40">
+                          <span>Awake 15%</span>
+                          <span>Light 25%</span>
+                          <span>Deep 45%</span>
+                          <span>REM 15%</span>
+                        </div>
+                      </div>
+
+                      {/* Weekly Activity Chart - Strong */}
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-white/40 text-xs uppercase tracking-wider">Weekly Activity</span>
+                          <span className="text-violet-400 text-sm">+18%</span>
+                        </div>
+                        <div className="flex items-end justify-between h-28 gap-2">
+                          {[65, 45, 80, 55, 95, 70, 85].map((h, i) => (
+                            <div key={i} className="flex-1 flex flex-col items-center gap-2">
+                              <div 
+                                className="w-full rounded-sm bg-violet-500"
+                                style={{ height: `${h}%` }}
+                              />
+                              <span className="text-xs text-white/30">{['M', 'T', 'W', 'T', 'F', 'S', 'S'][i]}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Stats Row - Clean */}
+                      <div className="flex justify-between pt-4 border-t border-white/[0.06]">
+                        <div>
+                          <div className="text-2xl font-light text-white">84</div>
+                          <div className="text-white/30 text-xs">Sleep Score</div>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-light text-white">92%</div>
+                          <div className="text-white/30 text-xs">Efficiency</div>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-light text-white">12m</div>
+                          <div className="text-white/30 text-xs">Latency</div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+
+            {/* Advanced */}
+            <motion.div
+              className={`relative rounded-2xl border overflow-hidden cursor-pointer transition-all duration-500 ${
+                hoveredLevel === "advanced" 
+                  ? "border-orange-500/30 bg-gradient-to-br from-orange-950/30 to-black" 
+                  : "border-white/[0.06] bg-white/[0.02]"
+              }`}
+              animate={{ 
+                flex: hoveredLevel === "advanced" ? 4 : hoveredLevel === null ? 1 : 0.4,
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              onMouseEnter={() => setHoveredLevel("advanced")}
+              onMouseLeave={() => setHoveredLevel(null)}
+            >
+              <div className="p-6 h-full flex flex-col">
+                <h3 className="text-xl font-light text-white mb-1">Advanced</h3>
+                <p className="text-white/30 text-xs">Full metrics</p>
+
+                <AnimatePresence>
+                  {hoveredLevel === "advanced" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                      className="flex-1 flex flex-col gap-6 mt-6"
+                    >
+                      {/* HRV Chart - Strong */}
+                      <div>
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-white/40 text-xs uppercase tracking-wider">HRV Trend</span>
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-3xl font-light text-white">52</span>
+                            <span className="text-white/30 text-sm">ms</span>
+                            <span className="text-emerald-400 text-sm ml-2">↑ 8%</span>
+                          </div>
+                        </div>
+                        <div className="flex items-end gap-1 h-20">
+                          {[35, 42, 38, 45, 40, 48, 44, 52, 47, 55, 50, 52, 48, 54, 52].map((v, i) => (
+                            <div key={i} className="flex-1 bg-orange-500 rounded-sm" style={{ height: `${v}%` }} />
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Metrics Row - Clean */}
+                      <div className="grid grid-cols-3 gap-6">
+                        <div>
+                          <div className="text-white/40 text-xs uppercase tracking-wider mb-2">VO₂ Max</div>
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-3xl font-light text-white">48.2</span>
+                            <span className="text-white/30 text-xs">ml/kg</span>
+                          </div>
+                          <div className="h-2 bg-white/[0.06] rounded-full mt-3 overflow-hidden">
+                            <div className="h-full w-[82%] bg-emerald-500 rounded-full" />
+                          </div>
+                          <div className="text-emerald-400 text-xs mt-2">Elite</div>
+                        </div>
+                        <div>
+                          <div className="text-white/40 text-xs uppercase tracking-wider mb-2">Resting HR</div>
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-3xl font-light text-white">58</span>
+                            <span className="text-white/30 text-xs">bpm</span>
+                          </div>
+                          <div className="h-2 bg-white/[0.06] rounded-full mt-3 overflow-hidden">
+                            <div className="h-full w-[45%] bg-red-500 rounded-full" />
+                          </div>
+                          <div className="text-white/40 text-xs mt-2">Optimal</div>
+                        </div>
+                        <div>
+                          <div className="text-white/40 text-xs uppercase tracking-wider mb-2">Body Temp</div>
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-3xl font-light text-white">36.8</span>
+                            <span className="text-white/30 text-xs">°C</span>
+                          </div>
+                          <div className="h-2 bg-white/[0.06] rounded-full mt-3 overflow-hidden">
+                            <div className="h-full w-[50%] bg-amber-500 rounded-full" />
+                          </div>
+                          <div className="text-white/40 text-xs mt-2">Normal</div>
+                        </div>
+                      </div>
+
+                      {/* Recovery Circle + Bars */}
+                      <div className="flex items-center gap-8 pt-4 border-t border-white/[0.06]">
+                        <div className="relative w-24 h-24 flex-shrink-0">
+                          <svg className="w-24 h-24 transform -rotate-90">
+                            <circle cx="48" cy="48" r="40" stroke="rgba(255,255,255,0.06)" strokeWidth="6" fill="none" />
+                            <circle cx="48" cy="48" r="40" 
+                              stroke="#f97316" 
+                              strokeWidth="6" 
+                              fill="none" 
+                              strokeDasharray="251.2" 
+                              strokeDashoffset="50" 
+                              strokeLinecap="round" 
+                            />
+                          </svg>
+                          <div className="absolute inset-0 flex flex-col items-center justify-center">
+                            <span className="text-2xl font-light text-white">80</span>
+                            <span className="text-white/30 text-[10px]">recovery</span>
+                          </div>
+                        </div>
+                        <div className="flex-1 space-y-3">
+                          <div>
+                            <div className="flex justify-between mb-1">
+                              <span className="text-white/40 text-xs">Sleep Quality</span>
+                              <span className="text-white text-xs">85%</span>
+                            </div>
+                            <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
+                              <div className="h-full w-[85%] bg-violet-500 rounded-full" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="flex justify-between mb-1">
+                              <span className="text-white/40 text-xs">Strain Balance</span>
+                              <span className="text-white text-xs">72%</span>
+                            </div>
+                            <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
+                              <div className="h-full w-[72%] bg-orange-500 rounded-full" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="flex justify-between mb-1">
+                              <span className="text-white/40 text-xs">HRV Status</span>
+                              <span className="text-white text-xs">78%</span>
+                            </div>
+                            <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
+                              <div className="h-full w-[78%] bg-emerald-500 rounded-full" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Bottom note */}
+          <motion.div 
+            className="mt-12 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <p className="text-white/30 font-light text-sm">
+              Hover to explore each level. Switch anytime in the app.
+            </p>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const aboutFeatures = [
   {
     id: 1,
@@ -34,7 +398,7 @@ const aboutFeatures = [
   },
   {
     id: 3,
-    title: "Connect it all with Avance AI",
+    title: "Avance AI",
     shortDescription: "Personal AI companions that help you reflect, plan, and adapt.",
     image: "/images/try3.png",
     fullContent: {
@@ -195,6 +559,8 @@ export default function AvanceLanding() {
             className="object-cover"
             priority
           />
+          {/* Gradient fade to black at bottom */}
+          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent to-black pointer-events-none" />
         </div>
         <div className="relative z-10 container mx-auto px-8">
           <div className="max-w-xl">
@@ -252,6 +618,7 @@ export default function AvanceLanding() {
                   onClick={() => setSelectedFeature(feature.id)}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
                   transition={{ duration: 0.6, delay: index * 0.15 }}
                   viewport={{ once: true, margin: "-50px" }}
                 >
@@ -422,130 +789,7 @@ export default function AvanceLanding() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="relative py-32" style={{ backgroundColor: "#000000" }}>
-        <div className="container mx-auto px-8">
-          <div className="max-w-6xl mx-auto">
-            
-            {/* Section Label */}
-            <motion.div 
-              className="mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true, margin: "-100px" }}
-            >
-              <span className="text-white/30 font-mono text-sm tracking-[0.3em] uppercase">
-                003 — Features
-              </span>
-            </motion.div>
-
-            {/* Header */}
-            <motion.div 
-              className="mb-16"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true, margin: "-100px" }}
-            >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white leading-tight mb-6">
-                Built for real wellness.
-              </h2>
-            </motion.div>
-
-            {/* Key Feature - Adaptive Experience */}
-            <motion.div 
-              className="bg-white/[0.02] border border-white/[0.05] rounded-3xl p-10 mb-8"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              viewport={{ once: true, margin: "-50px" }}
-            >
-              <div className="text-white/30 font-mono text-xs uppercase tracking-wider mb-6">Key Feature</div>
-              <h3 className="text-3xl md:text-4xl font-light text-white mb-4">The entire app adapts to you.</h3>
-              <p className="text-white/50 font-light leading-relaxed mb-8 max-w-2xl">
-                Not just metrics — everything. The way you see data, how AI talks to you, workout complexity, insights depth. Choose your level anytime.
-              </p>
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="bg-white/[0.03] rounded-2xl p-6">
-                  <div className="text-white font-light text-xl mb-3">Simple</div>
-                  <p className="text-white/40 text-sm font-light leading-relaxed">Clear language, icons, human insights. "You're tired today, take it easy."</p>
-                </div>
-                <div className="bg-white/[0.03] rounded-2xl p-6">
-                  <div className="text-white font-light text-xl mb-3">Balanced</div>
-                  <p className="text-white/40 text-sm font-light leading-relaxed">Structured summaries, trends, explained metrics. "Sleep down, recovery affected."</p>
-                </div>
-                <div className="bg-white/[0.03] rounded-2xl p-6">
-                  <div className="text-white font-light text-xl mb-3">Technical</div>
-                  <p className="text-white/40 text-sm font-light leading-relaxed">Raw data, baselines, minimal interpretation. "HRV -12% vs baseline."</p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Features Grid - Simplified */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-              
-              <motion.div 
-                className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-              >
-                <h3 className="text-lg font-light text-white mb-2">Wearable Ecosystem</h3>
-                <p className="text-white/40 text-sm font-light">Watches, Bands, Rings. Your devices, your data. No dependencies.</p>
-              </motion.div>
-
-              <motion.div 
-                className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true, margin: "-50px" }}
-              >
-                <h3 className="text-lg font-light text-white mb-2">AI Personal Coach</h3>
-                <p className="text-white/40 text-sm font-light">Practical AI that adjusts training based on your body and mind.</p>
-              </motion.div>
-
-              <motion.div 
-                className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: true, margin: "-50px" }}
-              >
-                <h3 className="text-lg font-light text-white mb-2">Mental & Emotional</h3>
-                <p className="text-white/40 text-sm font-light">Daily check-ins, mood tracking, body-mind pattern detection.</p>
-              </motion.div>
-
-              <motion.div 
-                className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-6"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                viewport={{ once: true, margin: "-50px" }}
-              >
-                <h3 className="text-lg font-light text-white mb-2">Privacy First</h3>
-                <p className="text-white/40 text-sm font-light">Your data, your control. HIPAA-aware, privacy-first architecture.</p>
-              </motion.div>
-
-            </div>
-
-            {/* One-liner */}
-            <motion.div 
-              className="border-t border-white/10 pt-10"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true, margin: "-50px" }}
-            >
-              <p className="text-white/40 font-light text-base leading-relaxed max-w-2xl">
-                Everything connected — at your level.
-              </p>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
+      <FeaturesSection />
 
       {/* Community Section */}
       <section id="community" className="relative py-32" style={{ backgroundColor: "#0a0a0a" }}>
